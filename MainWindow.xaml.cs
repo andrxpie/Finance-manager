@@ -25,8 +25,16 @@ namespace Finance_manager
         public MainWindow()
         {
             InitializeComponent();
-            myPieChart.Series.Add(new PieSeries { Title = "BAD", Fill = Brushes.Red, StrokeThickness = 0, Values = new ChartValues<double> { 90.0 } });
-            myPieChart.Series.Add(new PieSeries { Title = "GOOD", Fill = Brushes.Green, StrokeThickness = 0, Values = new ChartValues<double> { 10.0 } });
+
+            #region Test
+            //myPieChart.Series.Add(new PieSeries { Title = "1", Fill = Brushes.Red, StrokeThickness = 0, Values = new ChartValues<double> { 10.0 } });
+            //myPieChart.Series.Add(new PieSeries { Title = "2", Fill = Brushes.AliceBlue, StrokeThickness = 0, Values = new ChartValues<double> { 10.0 } });
+            //myPieChart.Series.Add(new PieSeries { Title = "2", Fill = Brushes.Black, StrokeThickness = 0, Values = new ChartValues<double> { 10.0 } });
+            //myPieChart.Series.Add(new PieSeries { Title = "3", Fill = Brushes.Yellow, StrokeThickness = 0, Values = new ChartValues<double> { 10.0 } });
+            //myPieChart.Series.Add(new PieSeries { Title = "4", Fill = Brushes.Tomato, StrokeThickness = 0, Values = new ChartValues<double> { 10.0 } });
+            //myPieChart.Series.Add(new PieSeries { Title = "5", Fill = Brushes.Purple, StrokeThickness = 0, Values = new ChartValues<double> { 25.0 } });
+            //myPieChart.Series.Add(new PieSeries { Title = "6", Fill = Brushes.Orange, StrokeThickness = 0, Values = new ChartValues<double> { 25.0 } });
+            #endregion
 
             DataContext = this;
         }

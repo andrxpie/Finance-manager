@@ -8,6 +8,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="470" Width="300">
     <StackPanel>
-        <lvc:PieChart x:Name="myPieChart" StartingRotationAngle="0" Height="120"/>
+        <lvc:PieChart x:Name="myPieChart" StartingRotationAngle="0" Height="300" InnerRadius="100" LegendLocation="None" Hoverable="True"/>
     </StackPanel>
 </Window>
