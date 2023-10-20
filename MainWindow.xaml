@@ -10,7 +10,13 @@
         Title="MainWindow" Height="420" Width="300">
     <StackPanel>
         <DockPanel LastChildFill="False">
-            
+            <materialDesign:Chip
+            Content="No login"
+            Style="{StaticResource MaterialDesignOutlineChip}">
+                <materialDesign:Chip.Icon>
+                    <Image/>
+                </materialDesign:Chip.Icon>
+            </materialDesign:Chip>
             <Border Height="50" DockPanel.Dock="Right" Background="AliceBlue">
             <Label Content="Balance : " FontSize="20" HorizontalAlignment="Left"/>
         </Border>
