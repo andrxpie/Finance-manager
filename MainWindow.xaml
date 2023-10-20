@@ -7,9 +7,9 @@
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="420" Width="300">
+        Title="MainWindow" Height="470" Width="300">
     <StackPanel>
-        <DockPanel LastChildFill="False">
+        <DockPanel LastChildFill="False" Height="50">
             <materialDesign:Chip
             Content="No login"
             Style="{StaticResource MaterialDesignOutlineChip}">
@@ -17,11 +17,15 @@
                     <Image/>
                 </materialDesign:Chip.Icon>
             </materialDesign:Chip>
-            <Border Height="50" DockPanel.Dock="Right" Background="AliceBlue">
-            <Label Content="Balance : " FontSize="20" HorizontalAlignment="Left"/>
-        </Border>
+            
         </DockPanel>
         <lvc:PieChart x:Name="myPieChart" StartingRotationAngle="0" Height="200" Margin="40" InnerRadius="50" LegendLocation="None" Hoverable="True" BorderThickness="1" />
+        <Border Height="30" DockPanel.Dock="Right" Background="AliceBlue" Width="200">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Balance : " FontSize="18" FontWeight="DemiBold"/>
+                <Label Name="BalanceValue" Content="0" FontSize="18" FontWeight="DemiBold"/>
+            </StackPanel>
+        </Border>
         <DockPanel LastChildFill="False" Height="75">
             <Button 
                 Background="Green" BorderBrush="Green"
