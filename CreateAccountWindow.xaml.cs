@@ -19,6 +19,7 @@ namespace Finance_manager
     /// </summary>
     public partial class CreateAccountWindow : Window
     {
+        
         public CreateAccountWindow()
         {
             InitializeComponent();
@@ -30,23 +31,32 @@ namespace Finance_manager
         }
         private void CheckValid()
         {
-            
-            if (passTxtBox.Text == passSecTxtBox.Text)
+            Exception e = new Exception();
+              
+            if (passTxtBox.Text == passSecTxtBox.Text && loginTxtBox.Text != string.Empty && policyCheckBox.IsChecked == true)
             {
-                //save in db
                 Authorization auth = new Authorization();
 
                 Close();
 
-                //in db emailTxtBox.Text;
-                auth.login = this.loginTxtBox.Text;
-                auth.password = this.passTxtBox.Text;
+                //save in db info 'bout user
+
                 auth.Show();
             }
             else
             {
-                MessageBox.Show("Invalid login or password");
+                MessageBox.Show("Invalid info.", e.Message);
             }
+        }
+
+        private void PolicyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(@"
+Lorem ipsum dolor sit amet,
+consectetur adipiscing elit,
+sed do eiusmod tempor incididunt
+ut labore et dolore magna aliqua.
+");
         }
     }
 }

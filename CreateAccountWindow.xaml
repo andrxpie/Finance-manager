@@ -28,26 +28,35 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="63"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="63"/>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!--#endregion-->
-        <!--#region Label, TextBox, Button, etc. -->
+        <!--#region Label -->
         <Label Grid.Column="1" Grid.ColumnSpan="2" Content="Login" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"/>
-        <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="Passwords" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"/>
         <Label Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Center" Content="Email" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+        <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="Passwords" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"/>
+        <Label Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Content="Confirm Password" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"/>
+        <!--#endregion-->
 
+        <!--#region TextBox -->
         <TextBox Name="loginTxtBox" Background="LightGray" Grid.Row="1" Grid.ColumnSpan="4" Margin="15"/>
         <TextBox Name="emailTxtBox" Background="LightGray" Grid.Row="2" Grid.ColumnSpan="4" Margin="15"/>
         <TextBox Name="passTxtBox" Background="LightGray" Grid.Row="4" Grid.ColumnSpan="4" Margin="15"/>
-        <TextBox Name="passSecTxtBox" Background="LightGray" Grid.Row="5" Grid.ColumnSpan="4" Margin="15"/>
-
-        <CheckBox Grid.Row="6" Name="policyCheckBox" Grid.ColumnSpan="3"
-                  Content="Check is policy rules was toggled"
-                  Style="{StaticResource MaterialDesignCheckBox}" />
-
-        <Button Name="createBtn" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Content="Click!" Click="CreateAccBtn_Click"/>
+        <TextBox Name="passSecTxtBox" Background="LightGray" Grid.Row="6" Grid.ColumnSpan="4" Margin="15"/>
         <!--#endregion-->
+
+        <CheckBox Grid.Row="7" Name="policyCheckBox" Grid.ColumnSpan="3" IsChecked="False"
+                  Style="{StaticResource MaterialDesignCheckBox}" />
+        <Button Grid.Row="7" Grid.ColumnSpan="4" Foreground="LightGray" Margin="10" HorizontalAlignment="Right"
+  Click="PolicyBtn_Click"
+  Content="agreement with the rules to the client"
+  Style="{StaticResource MaterialDesignFlatDarkButton}"
+  ToolTip="MaterialDesignFlatButton" />
+
+        <Button Name="createBtn" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Content="Click!" Click="CreateAccBtn_Click"/>
+        
     </Grid>
 </Window>

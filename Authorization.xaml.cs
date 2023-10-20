@@ -19,13 +19,9 @@ namespace Finance_manager
     /// </summary>
     public partial class Authorization : Window
     {
-        public string login = string.Empty;
-        public string password = string.Empty;
-
         public Authorization()
         {
             InitializeComponent();
-
         }
 
         private void CreateAccBtn_Click(object sender, RoutedEventArgs e)
@@ -37,7 +33,7 @@ namespace Finance_manager
 
         private void LogInBtn_Click(object sender, RoutedEventArgs e)
         {
-            //"MainWindow" mw = new "MainWindow"(login, password);
+            //"MainWindow" mw = new "MainWindow"(loginTxtBox, passTxtBox);
             Validation();
             
             //mw.Show();
@@ -51,7 +47,6 @@ namespace Finance_manager
             else
             {
                 MessageBox.Show("Incorrect login or password");
-                
             }
         }
     }
