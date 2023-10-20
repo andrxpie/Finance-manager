@@ -7,10 +7,14 @@
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="470" Width="300">
+        Title="MainWindow" Height="420" Width="300">
     <StackPanel>
-
-      
+        <DockPanel LastChildFill="False">
+            
+            <Border Height="50" DockPanel.Dock="Right" Background="AliceBlue">
+            <Label Content="Balance : " FontSize="20" HorizontalAlignment="Left"/>
+        </Border>
+        </DockPanel>
         <lvc:PieChart x:Name="myPieChart" StartingRotationAngle="0" Height="200" Margin="40" InnerRadius="50" LegendLocation="None" Hoverable="True" BorderThickness="1" />
         <DockPanel LastChildFill="False" Height="75">
             <Button 
