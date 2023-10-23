@@ -7,13 +7,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  
-
-   
-  
   <ItemGroup>
-	<PackageReference Include="LiveCharts.Wpf.Core" Version="0.9.8" />
-	<PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.12">
