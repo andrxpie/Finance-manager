@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace Finance_manager
 {
-    /// <summary>
-    /// Interaction logic for Authorization.xaml
-    /// </summary>
     public partial class Authorization : Window
     {
         public Authorization()
