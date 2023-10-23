@@ -35,13 +35,23 @@ namespace Finance_manager
         {
             //"MainWindow" mw = new "MainWindow"(loginTxtBox, passTxtBox);
             Validation();
-            
-            //mw.Show();
+            /*
+            if(Validation()){
+                mw.Show();
+            }
+            */
         }
         private void Validation()
         {
             if (loginTxtBox.Text != string.Empty && passTxtBox.Text != string.Empty)
             {
+                /*User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text);
+                if(user != null){
+                   return BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password);
+                }
+                return false;
+                */
+
                 Close();
             }
             else

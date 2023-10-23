@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BCrypt.Net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,10 +37,16 @@ namespace Finance_manager
             if (passTxtBox.Text == passSecTxtBox.Text && loginTxtBox.Text != string.Empty && policyCheckBox.IsChecked == true)
             {
                 Authorization auth = new Authorization();
-
                 Close();
 
-                //save in db info 'bout user
+                User user = new User();
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(passTxtBox.Text);
+                user.Login = loginTxtBox.Text;
+                user.Password = hashedPassword;
+                user.Email = emailTxtBox.Text;
+                user.PasswordOpen = passTxtBox.Text;
+
+                // save in db using Unit of Work
 
                 auth.Show();
             }
