@@ -12,6 +12,7 @@ namespace Finance_manager
         public int Id { get; set; }
         public string Login { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
+        public string PasswordOpen { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public double Balance { get; set; } = 0;
         public IEnumerable<Transaction> Transactions { get; set; }
