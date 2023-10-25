@@ -30,13 +30,14 @@ namespace Finance_manager
 
         private void LogInBtn_Click(object sender, RoutedEventArgs e)
         {
-            //"MainWindow" mw = new "MainWindow"(loginTxtBox, passTxtBox);
+            MainWindow mw = new MainWindow();
             Validation();
-            /*
-            if(Validation()){
+
+            //if (Validation())
+            //{
                 mw.Show();
-            }
-            */
+            //}
+
         }
         private void Validation()
         {

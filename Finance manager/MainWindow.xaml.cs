@@ -36,5 +36,12 @@ namespace Finance_manager
 
             DataContext = this;
         }
+
+        private void CategoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryWindow categoryWindow = new CategoryWindow();
+            Close();
+            categoryWindow.Show();
+        }
     }
 }

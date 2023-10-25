@@ -17,9 +17,17 @@
                     <Image/>
                 </materialDesign:Chip.Icon>
             </materialDesign:Chip>
-            
+
         </DockPanel>
+        
+        <!--#region Categories -->
+        <StackPanel>
+            <Button Content="Check Categories" Click="CategoryBtn_Click"/>
+        </StackPanel>
+        <!--#endregion-->
+        
         <lvc:PieChart x:Name="myPieChart" StartingRotationAngle="0" Height="200" Margin="40" InnerRadius="50" LegendLocation="None" Hoverable="True" BorderThickness="1" />
+       
         <Border Height="30" DockPanel.Dock="Right" Background="MediumPurple" Width="200">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Balance : " FontSize="18" FontWeight="DemiBold"/>
@@ -41,6 +49,6 @@
             </Button>
 
         </DockPanel>
-
+        
     </StackPanel>
 </Window>
