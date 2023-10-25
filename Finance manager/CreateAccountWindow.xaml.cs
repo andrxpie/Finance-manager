@@ -1,4 +1,5 @@
 ﻿using BCrypt.Net;
+using Data_access.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,8 @@ namespace Finance_manager
 {
     public partial class CreateAccountWindow : Window
     {
-        
+        UnitOfWork uow = new();
+
         public CreateAccountWindow()
         {
             InitializeComponent();
@@ -27,6 +29,7 @@ namespace Finance_manager
         {
             CheckValid();
         }
+
         private void CheckValid()
         {
             Exception e = new Exception();
@@ -43,7 +46,8 @@ namespace Finance_manager
                 user.Email = emailTxtBox.Text;
                 user.PasswordOpen = passTxtBox.Text;
 
-                // save in db using Unit of Work
+                uow.UserRepo.Insert(user);
+                uow.Save();
 
                 auth.Show();
             }
