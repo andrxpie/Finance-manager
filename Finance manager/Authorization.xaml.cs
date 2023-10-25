@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data_access.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,8 @@ namespace Finance_manager
 {
     public partial class Authorization : Window
     {
+        UnitOfWork uow = new();
+
         public Authorization()
         {
             InitializeComponent();
@@ -30,26 +33,26 @@ namespace Finance_manager
 
         private void LogInBtn_Click(object sender, RoutedEventArgs e)
         {
-            //"MainWindow" mw = new "MainWindow"(loginTxtBox, passTxtBox);
             Validation();
-            /*
-            if(Validation()){
-                mw.Show();
-            }
-            */
         }
+
         private void Validation()
         {
             if (loginTxtBox.Text != string.Empty && passTxtBox.Text != string.Empty)
             {
-                /*User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text);
-                if(user != null){
-                   return BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password);
+                User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault();
+                if(user != null)
+                {
+                    if(BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
+                    {
+                        MainWindow mw = new MainWindow(user);
+                        mw.ShowDialog();
+                    }
                 }
-                return false;
-                */
 
-                Close();
+                loginTxtBox.Text = string.Empty;
+                passTxtBox.Text = string.Empty;
+                Hide();
             }
             else
             {
