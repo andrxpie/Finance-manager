@@ -14,7 +14,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="CategoryWindow" Height="370" Width="300">
-    <Grid Background="">
+    <Grid>
         
     </Grid>
 </Window>
