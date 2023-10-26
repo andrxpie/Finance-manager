@@ -19,9 +19,13 @@ namespace Finance_manager
 {
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        User currUser;
+
+        public MainWindow(User user)
         {
             InitializeComponent();
+
+            user = currUser;
 
             #region Test
             myPieChart.Series.Add(new PieSeries { Title = "1", Fill = Brushes.Red, StrokeThickness = 5, Values = new ChartValues<double> { 10.0 } });

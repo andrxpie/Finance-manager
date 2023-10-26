@@ -16,4 +16,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="media\avatars\" />
+    <Folder Include="media\categories icons\" />
+  </ItemGroup>
+
 </Project>
