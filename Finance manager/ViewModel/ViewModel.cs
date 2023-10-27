@@ -34,7 +34,7 @@ namespace Finance_manager.ViewModel
 
         private void ShowCategories()
         {
-            //Categories.Clear();
+            Categories.Clear();
             foreach (var cat in uoW.CategoryRepo.Get())
             {
                 Categories.Add(cat);
