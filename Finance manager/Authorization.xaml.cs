@@ -37,26 +37,26 @@ namespace Finance_manager
         }
         private void Validation()
         {
-            if (loginTxtBox.Text != string.Empty && passTxtBox.Text != string.Empty)
-            {
-                User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault();
-                if(user != null)
-                {
-                    if(BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
-                    {
-                        MainWindow mw = new MainWindow(user);
+            //if (loginTxtBox.Text != string.Empty && passTxtBox.Text != string.Empty)
+            //{
+            //    User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault();
+            //    if(user != null)
+            //    {
+            //        if(BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
+            //        {
+                        MainWindow mw = new MainWindow();
                         mw.Show();
-                    }
-                }
+                //    }
+                //}
 
-                loginTxtBox.Text = string.Empty;
-                passTxtBox.Text = string.Empty;
+                //loginTxtBox.Text = string.Empty;
+                //passTxtBox.Text = string.Empty;
                 Close();
-            }
-            else
-            {
-                MessageBox.Show("Incorrect login or password");
-            }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Incorrect login or password");
+            //}
         }
     }
 }
