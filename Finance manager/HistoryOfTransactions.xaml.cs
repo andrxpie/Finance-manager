@@ -22,6 +22,7 @@ namespace Finance_manager
     {
         private IUoW uow = new UnitOfWork();
         User currentUser;
+
         public HistoryOfTransactions(User user)
         {
             InitializeComponent();
