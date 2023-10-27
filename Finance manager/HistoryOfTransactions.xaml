@@ -41,7 +41,6 @@
                             </Grid.ColumnDefinitions>
                             <ToggleButton
                             VerticalAlignment="Center"
-                            Content="{Binding Code}"
                             IsChecked="{Binding IsSelected}"
                             Style="{StaticResource MaterialDesignActionLightToggleButton}" />
                             <StackPanel

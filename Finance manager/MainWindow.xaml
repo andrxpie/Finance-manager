@@ -17,6 +17,7 @@
                     <Image/>
                 </materialDesign:Chip.Icon>
             </materialDesign:Chip>
+            <Button Click="ToOpenHistory_Click">History</Button>
         </DockPanel>
         <lvc:PieChart x:Name="myPieChart" StartingRotationAngle="0" Height="200" Margin="40" InnerRadius="50" LegendLocation="None" Hoverable="True" BorderThickness="1" />
         <Border Height="30" DockPanel.Dock="Right" Background="MediumPurple" Width="200">

@@ -25,7 +25,7 @@ namespace Finance_manager
         {
             InitializeComponent();
 
-            user = currUser;
+            currUser = user;
 
             #region Test
             myPieChart.Series.Add(new PieSeries { Title = "1", Fill = Brushes.Red, StrokeThickness = 5, Values = new ChartValues<double> { 10.0 } });
@@ -41,11 +41,11 @@ namespace Finance_manager
             DataContext = this;
         }
 
-        //private void ToOpenHistory_Click(object sender, RoutedEventArgs e)
-        //{
-        //    HistoryOfTransactions historyOfTransactions = new HistoryOfTransactions(currUser);
-        //    this.Close();
-        //    historyOfTransactions.Show();
-        //}
+        private void ToOpenHistory_Click(object sender, RoutedEventArgs e)
+        {
+            HistoryOfTransactions historyOfTransactions = new HistoryOfTransactions(currUser);
+            this.Close();
+            historyOfTransactions.Show();
+        }
     }
 }

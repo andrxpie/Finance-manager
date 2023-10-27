@@ -30,7 +30,8 @@ namespace Finance_manager
             {
                 x.Id, 
                 Category = x.Category.Name,
-                x.Sum
+                Sum = x.Sum, 
+                Date = x.DateTime
             });
             uow.Save();
         }
