@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Finance_manager"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodel="clr-namespace:Finance_manager.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="300">
     <StackPanel>
@@ -23,6 +23,7 @@
         <!--#region Categories -->
         <StackPanel>
             <Button Content="Check Categories" Click="CategoryBtn_Click"/>
+            <TextBox IsReadOnly="True" Background="Wheat" Name="choicedTxtBox" Height="40" Text="{Binding SelectedText}" TextAlignment="Center" FontSize="20" FontWeight="Bold"/>
         </StackPanel>
         <!--#endregion-->
         

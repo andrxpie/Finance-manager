@@ -23,7 +23,6 @@ namespace Finance_manager
     /// </summary>
     public partial class CategoryWindow : Window
     {
-        private IUoW uoW = new UnitOfWork();
         public ObservableCollection<Category> Categories { get; set; }
         private ViewModel.ViewModel vm;
 
@@ -41,11 +40,24 @@ namespace Finance_manager
             Close();
         }
 
+        public string SelectegCateg { get; set; }
         private void ExitBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow main = new();
-            main.Show();
+            this.DialogResult = true;
             Close();
+        }
+        private void CategoryListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (categLB.SelectedItem != null)
+            {
+                Category selectedCategory = categLB.SelectedItem as Category;
+
+                if (selectedCategory != null)
+                {
+                    MessageBox.Show($"You clicked on category: {selectedCategory.Name}");
+                    SelectegCateg = selectedCategory.Name;
+                }
+            }
         }
     }
 }

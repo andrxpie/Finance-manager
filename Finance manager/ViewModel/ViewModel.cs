@@ -13,8 +13,19 @@ namespace Finance_manager.ViewModel
 {
     public class ViewModel : INotifyPropertyChanged
     {
+        private string selectedText;
         private IUoW uoW = new UnitOfWork();
         private ObservableCollection<Category> categories;
+
+        public string SelectedText
+        {
+            get { return selectedText; }
+            set
+            {
+                selectedText = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<Category> Categories
         {

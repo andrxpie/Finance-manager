@@ -37,8 +37,8 @@
 
         <Button Grid.ColumnSpan="2" Margin="10" Content="Add" Click="AddCategoryBtn_Click" Background="Green"/>
         <Button Grid.Column="3" Grid.ColumnSpan="2" Content="Exit" Margin="10" Click="ExitBtn_Click" Background="DarkRed"/>
-            
-        <ListBox Name="categDG" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="4" Background="White" ItemsSource="{Binding Categories}" Width="180">
+
+        <ListBox Name="categLB" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="4" Background="White" ItemsSource="{Binding Categories}" Width="180" SelectionChanged="CategoryListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
