@@ -43,6 +43,7 @@ namespace Finance_manager
         private void AddIncomeClick_Click(object sender, RoutedEventArgs e)
         { 
             AddTransactionMenu menu = new(currUser);
+            menu.Title.Content = "New income";
             NavigateToAddPage.NavigationService.Navigate(menu);
 
         }
@@ -50,6 +51,7 @@ namespace Finance_manager
         private void AddSpendsClick_Click(object sender, RoutedEventArgs e)
         {
             AddTransactionMenu menu = new(currUser);
+            menu.Title.Content = "New spend";
             menu.isCreditingtransaction = false;
             NavigateToAddPage.NavigationService.Navigate(menu);
         }

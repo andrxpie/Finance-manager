@@ -44,6 +44,6 @@
         </DockPanel>
 
     </StackPanel>
-        <Frame Name="NavigateToAddPage"/>
+        <Frame Name="NavigateToAddPage" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

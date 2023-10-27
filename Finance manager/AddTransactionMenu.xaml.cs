@@ -30,6 +30,7 @@ namespace Finance_manager
         public AddTransactionMenu(User user)
         {
             InitializeComponent();
+            CategoriesList.ItemsSource = Uow.CategoryRepo.Get().Select(x => x.Name);
             currUser = user;
         }
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
@@ -47,19 +48,28 @@ namespace Finance_manager
 
         private void AcceptBtn_Click(object sender, RoutedEventArgs e)
         {
-            //if(isCreditingtransaction == true)
-            //{
-            //    Uow.TransactionRepo.Insert(new Transaction()
-            //    {
-            //        Sum = Convert.ToInt32(ValueToEnter.Text),
-            //        UserId = currUser.Id,
-            //        DateTime = new DateTime(datePicker.SelectedDate.Value.Year, datePicker.SelectedDate.Value.Month, datePicker.SelectedDate.Value.Day)
-            //    });
-            //}
-            //else 
-            //{
-
-            //}
+            if (isCreditingtransaction == true)
+            {
+                Uow.TransactionRepo.Insert(new Transaction()
+                {
+                    Sum = Convert.ToInt32(ValueToEnter.Text),
+                    UserId = currUser.Id,
+                    DateTime = new DateTime(datePicker.SelectedDate.Value.Year, datePicker.SelectedDate.Value.Month, datePicker.SelectedDate.Value.Day),
+                    IsCrediting = true
+                });
+                Uow.Save();
+            }
+            else
+            {
+                Uow.TransactionRepo.Insert(new Transaction()
+                {
+                    Sum = Convert.ToInt32(ValueToEnter.Text),
+                    UserId = currUser.Id,
+                    DateTime = new DateTime(datePicker.SelectedDate.Value.Year, datePicker.SelectedDate.Value.Month, datePicker.SelectedDate.Value.Day),
+                    IsCrediting = false
+                });
+                Uow.Save();
+            }
         }
     }
 }
