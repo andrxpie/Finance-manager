@@ -33,14 +33,7 @@ namespace Finance_manager
 
         private void LogInBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
             Validation();
-
-            //if (Validation())
-            //{
-                mw.Show();
-            //}
-
         }
         private void Validation()
         {
@@ -52,13 +45,13 @@ namespace Finance_manager
                     if(BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
                     {
                         MainWindow mw = new MainWindow(user);
-                        mw.ShowDialog();
+                        mw.Show();
                     }
                 }
 
                 loginTxtBox.Text = string.Empty;
                 passTxtBox.Text = string.Empty;
-                Hide();
+                Close();
             }
             else
             {
