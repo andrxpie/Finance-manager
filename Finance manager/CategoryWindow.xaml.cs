@@ -47,15 +47,5 @@ namespace Finance_manager
             main.Show();
             Close();
         }
-
-        private void ShowCategories()
-        {
-            Categories.Clear();
-            foreach (var category in uoW.CategoryRepo.Get())
-            {
-                Categories.Add(category);
-            }
-            uoW.Save();
-        }
     }
 }
