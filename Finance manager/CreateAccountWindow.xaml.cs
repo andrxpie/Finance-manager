@@ -40,12 +40,10 @@ namespace Finance_manager
                 Close();
 
                 User user = new User();
-                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(passTxtBox.Text);
                 user.Login = loginTxtBox.Text;
-                user.Password = hashedPassword;
+                user.Password = BCrypt.Net.BCrypt.HashPassword(passSecTxtBox.Text);
                 user.Email = emailTxtBox.Text;
                 user.PasswordOpen = passTxtBox.Text;
-
                 uow.UserRepo.Insert(user);
                 uow.Save();
 
