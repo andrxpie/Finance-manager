@@ -43,7 +43,6 @@ namespace Finance_manager
                 user.Login = loginTxtBox.Text;
                 user.Password = BCrypt.Net.BCrypt.HashPassword(passSecTxtBox.Text);
                 user.Email = emailTxtBox.Text;
-                user.PasswordOpen = passTxtBox.Text;
                 uow.UserRepo.Insert(user);
                 uow.Save();
 

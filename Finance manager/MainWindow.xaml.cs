@@ -40,5 +40,12 @@ namespace Finance_manager
 
             DataContext = this;
         }
+
+        //private void ToOpenHistory_Click(object sender, RoutedEventArgs e)
+        //{
+        //    HistoryOfTransactions historyOfTransactions = new HistoryOfTransactions(currUser);
+        //    this.Close();
+        //    historyOfTransactions.Show();
+        //}
     }
 }

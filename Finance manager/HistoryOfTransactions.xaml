@@ -19,7 +19,11 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="15*"/>
         </Grid.RowDefinitions>
-        
+        <Button
+            materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:0.5"
+            Style="{StaticResource MaterialDesignRaisedDarkButton}" Click="BackToMainMenu_Click" >
+            Back
+        </Button>
         <ItemsControl Grid.Row="1" x:Name="historyView"
         Grid.IsSharedSizeScope="True">
             <ItemsControl.ItemTemplate>
@@ -48,6 +52,8 @@
                                 Text="{Binding Date}" />
                                 <TextBlock
                                 Text="{Binding Sum}" />
+                                <TextBlock
+                                Text="{Binding Category}" />
                             </StackPanel>
                         </Grid>
                     </Border>

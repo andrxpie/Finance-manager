@@ -21,16 +21,25 @@ namespace Finance_manager
     public partial class HistoryOfTransactions : Window
     {
         private IUoW uow = new UnitOfWork();
-        public HistoryOfTransactions()
+        User currentUser;
+        public HistoryOfTransactions(User user)
         {
             InitializeComponent();
-            historyView.ItemsSource = uow.TransactionRepo.Get(includeProperties: "Category").Select(x => new
+            currentUser = user;
+            historyView.ItemsSource = uow.TransactionRepo.Get(x => x.User.Login == user.Login, includeProperties: "Category").Select(x => new
             {
                 x.Id, 
                 Category = x.Category.Name,
                 x.Sum
             });
             uow.Save();
+        }
+
+        private void BackToMainMenu_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow(currentUser);
+            this.Close();
+            mainWindow.Show();
         }
     }
 }
