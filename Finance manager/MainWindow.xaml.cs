@@ -19,7 +19,7 @@ namespace Finance_manager
 {
     public partial class MainWindow : Window
     {
-        User currUser;
+        User currUser = new();
 
         public MainWindow(User user)
         {
@@ -37,8 +37,21 @@ namespace Finance_manager
             myPieChart.Series.Add(new PieSeries { Title = "6", Fill = Brushes.Orange, StrokeThickness = 5, Values = new ChartValues<double> { 25.0 } });
 
             #endregion
-
             DataContext = this;
+        }
+
+        private void AddIncomeClick_Click(object sender, RoutedEventArgs e)
+        { 
+            AddTransactionMenu menu = new(currUser);
+            NavigateToAddPage.NavigationService.Navigate(menu);
+
+        }
+
+        private void AddSpendsClick_Click(object sender, RoutedEventArgs e)
+        {
+            AddTransactionMenu menu = new(currUser);
+            menu.isCreditingtransaction = false;
+            NavigateToAddPage.NavigationService.Navigate(menu);
         }
     }
 }
