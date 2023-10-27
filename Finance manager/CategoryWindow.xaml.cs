@@ -58,6 +58,7 @@ namespace Finance_manager
                     SelectegCateg = selectedCategory.Name;
                 }
             }
+
         }
     }
 }
