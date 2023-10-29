@@ -32,7 +32,6 @@ namespace Finance_manager
 
         private async void AddCatAsync()
         {
-            MainWindow mw = new();
             var entity = new Category
             {
                 Name = categoryName.Text,
@@ -46,8 +45,6 @@ namespace Finance_manager
                 MessageBox.Show("Apply");
             }
             Close();
-
-            mw.Show();
         }
     }
 }

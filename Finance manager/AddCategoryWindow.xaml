@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Finance_manager"
         mc:Ignorable="d"
-        Title="AddCategoryWindow" Height="250" Width="420">
+        Title="AddCategoryWindow" Height="220" Width="400">
     <Grid Background="AliceBlue">
         <!--#region Definitions -->
         <Grid.RowDefinitions>
