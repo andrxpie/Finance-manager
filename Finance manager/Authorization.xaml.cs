@@ -33,9 +33,15 @@ namespace Finance_manager
 
         private void LogInBtn_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow mw = new MainWindow();
             Validation();
-        }
 
+            //if (Validation())
+            //{
+                mw.Show();
+            //}
+
+        }
         private void Validation()
         {
             if (loginTxtBox.Text != string.Empty && passTxtBox.Text != string.Empty)
