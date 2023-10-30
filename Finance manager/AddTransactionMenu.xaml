@@ -21,7 +21,7 @@
             <Label Content="New income" Name="Title" DockPanel.Dock="Bottom" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-50, 0, 0, 0" FontWeight="Black"/>
         </DockPanel>
         <DatePicker Name="datePicker" IsDropDownOpen="False" SelectedDateFormat="Short"/>
-        <ComboBox Name="CategoriesList" Text="Select a category..." ItemsSource="{Binding Source=currUser.Categories.Name}"/>
+        <ComboBox Name="CategoriesList" Text="Select a category..."/>
         <Border Background="MediumPurple" Margin="10, 60, 10, 10">
             <DockPanel Height="25" LastChildFill="False">
                 <Label>

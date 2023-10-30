@@ -55,7 +55,8 @@ namespace Finance_manager
                     Sum = Convert.ToInt32(ValueToEnter.Text),
                     UserId = currUser.Id,
                     DateTime = new DateTime(datePicker.SelectedDate.Value.Year, datePicker.SelectedDate.Value.Month, datePicker.SelectedDate.Value.Day),
-                    IsCrediting = true
+                    IsCrediting = true,
+                    //Category = 
                 });
                 Uow.Save();
             }
