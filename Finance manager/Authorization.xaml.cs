@@ -22,6 +22,7 @@ namespace Finance_manager
         public Authorization()
         {
             InitializeComponent();
+
         }
 
         private void CreateAccBtn_Click(object sender, RoutedEventArgs e)
