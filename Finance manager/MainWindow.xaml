@@ -5,30 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Finance_manager"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodel="clr-namespace:Finance_manager.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ViewModel}"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         mc:Ignorable="d"
-        Title="MainWindow" Height="470" Width="340">
+        Title="MainWindow" Height="550" Width="340">
     <Grid>
         <StackPanel>
-        <DockPanel LastChildFill="False" Height="50">
-            <materialDesign:Chip
+            <DockPanel LastChildFill="False" Height="50">
+                <materialDesign:Chip
             Content="No login"
             Style="{StaticResource MaterialDesignOutlineChip}">
-                <materialDesign:Chip.Icon>
-                    <Image/>
-                </materialDesign:Chip.Icon>
-            </materialDesign:Chip>
+                    <materialDesign:Chip.Icon>
+                        <Image/>
+                    </materialDesign:Chip.Icon>
+                </materialDesign:Chip>
 
-        </DockPanel>
-        
-        <!--#region Categories -->
-        <StackPanel>
-            <Button Content="Check Categories" Click="CategoryBtn_Click"/>
-            <TextBox IsReadOnly="True" Background="Wheat" Name="choicedTxtBox" Height="40" Text="{Binding SelectedText}" TextAlignment="Center" FontSize="20" FontWeight="Bold"/>
-        </StackPanel>
-        <!--#endregion-->
-        
-        <lvc:PieChart x:Name="myPieChart" StartingRotationAngle="0" Height="200" Margin="40" InnerRadius="50" LegendLocation="None" Hoverable="True" BorderThickness="1" />
+            </DockPanel>
+
+            <lvc:PieChart x:Name="myPieChart" StartingRotationAngle="0" Height="200" Margin="40" InnerRadius="50" LegendLocation="None" Hoverable="True" BorderThickness="1" />
        
         <Border Height="30" DockPanel.Dock="Right" Background="MediumPurple" Width="200">
             <StackPanel Orientation="Horizontal">
