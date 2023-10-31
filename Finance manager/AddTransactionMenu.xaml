@@ -7,7 +7,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Finance_manager"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="340" Background="White"
+      d:MinHeight="450" d:MinWidth="340" Background="White"
       Title="AddTransactionMenu">
     <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
         <DockPanel>

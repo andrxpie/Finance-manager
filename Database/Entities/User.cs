@@ -16,7 +16,7 @@ namespace Finance_manager
         public string PasswordOpen { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public double Balance { get; set; } = 0;
-        public string AvatarPicture { get; set; } = "media/avatars/default.jpg";
+        //public string AvatarPicture { get; set; } = "media/avatars/default.jpg";
         public IEnumerable<Transaction> Transactions { get; set; }
         public IEnumerable<Category> Categories { get; set; }
     }

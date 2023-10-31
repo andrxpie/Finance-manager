@@ -22,15 +22,16 @@ namespace Finance_manager
     /// </summary>
     public partial class AddTransactionMenu : Page
     {
-        User currUser = new();
-        UnitOfWork Uow = new UnitOfWork();
-
+        private static User currUser = new();
+        private static UnitOfWork Uow = new UnitOfWork();
         public bool isCreditingtransaction = true;
+
+        private List<Category> tmp = (List<Category>)Uow.CategoryRepo.Get();
 
         public AddTransactionMenu(User user)
         {
             InitializeComponent();
-            CategoriesList.ItemsSource = Uow.CategoryRepo.Get().Select(x => x.Name);
+            CategoriesList.ItemsSource = tmp.Select(x => x.Name);
             currUser = user;
         }
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
@@ -56,7 +57,7 @@ namespace Finance_manager
                     UserId = currUser.Id,
                     DateTime = new DateTime(datePicker.SelectedDate.Value.Year, datePicker.SelectedDate.Value.Month, datePicker.SelectedDate.Value.Day),
                     IsCrediting = true,
-                    //Category = 
+                    CategoryId = tmp.Where(x => x.Name == ((Category)CategoriesList.SelectedItem).Name).Select(x => x.Id).First()
                 });
                 Uow.Save();
             }
@@ -67,11 +68,13 @@ namespace Finance_manager
                     Sum = Convert.ToInt32(ValueToEnter.Text),
                     UserId = currUser.Id,
                     DateTime = new DateTime(datePicker.SelectedDate.Value.Year, datePicker.SelectedDate.Value.Month, datePicker.SelectedDate.Value.Day),
-                    IsCrediting = false
+                    IsCrediting = false,
+                    CategoryId = tmp.Where(x => x.Name == ((Category)CategoriesList.SelectedItem).Name).Select(x => x.Id).First()
                 });
                 Uow.Save();
             }
         }
+
     }
 }
 
