@@ -5,14 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Finance_manager"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         mc:Ignorable="d"
-        Title="MainWindow" Height="470" Width="300">
-    <StackPanel>
-        <DockPanel LastChildFill="False" Height="50">
-            <materialDesign:Chip
+        Title="MainWindow" Height="550" Width="340">
+    <Grid>
+        <StackPanel>
+            <DockPanel LastChildFill="False" Height="50">
+                <materialDesign:Chip
             Content="No login"
             Style="{StaticResource MaterialDesignOutlineChip}">
+                    <materialDesign:Chip.Icon>
+                        <Image/>
+                    </materialDesign:Chip.Icon>
+                </materialDesign:Chip>
+
+            </DockPanel>
+
+            <lvc:PieChart x:Name="myPieChart" StartingRotationAngle="0" Height="200" Margin="40" InnerRadius="50" LegendLocation="None" Hoverable="True" BorderThickness="1" />
+       
                 <materialDesign:Chip.Icon>
                     <Image/>
                 </materialDesign:Chip.Icon>
@@ -27,13 +37,13 @@
             </StackPanel>
         </Border>
         <DockPanel LastChildFill="False" Height="75">
-            <Button 
+            <Button Name="AddIncomeClick" Click="AddIncomeClick_Click"
                 Background="Green" BorderBrush="Green"
                 Style="{StaticResource MaterialDesignFloatingActionButton}"
                 ToolTip="MaterialDesignFloatingActionDarkButton" FontSize="20" Height="50" Width="50" FontWeight="ExtraBold" Margin="50, 0, 0, 0" DockPanel.Dock="Left">
                 <materialDesign:PackIcon Kind="PlusThick" />
             </Button>
-            <Button
+            <Button Name="AddSpendsClick" Click="AddSpendsClick_Click"
                 Background="Red" BorderBrush="Red"
                 Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
                 ToolTip="MaterialDesignFloatingActionDarkButton" FontSize="20" Margin="0, 0, 50, 0" Height="50" Width="50" FontWeight="ExtraBold" DockPanel.Dock="Right">
@@ -41,6 +51,8 @@
             </Button>
 
         </DockPanel>
-
+        
     </StackPanel>
+        <Frame Name="NavigateToAddPage" NavigationUIVisibility="Hidden"/>
+    </Grid>
 </Window>

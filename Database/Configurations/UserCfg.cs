@@ -18,7 +18,7 @@ namespace Finance_manager
             builder.Property(x => x.Password).IsRequired();
             builder.Property(x => x.Balance).IsRequired();
             builder.Property(x => x.Email).IsRequired();
-
+    
             builder.HasMany(x => x.Categories).WithMany(x => x.Users);
         }
     }

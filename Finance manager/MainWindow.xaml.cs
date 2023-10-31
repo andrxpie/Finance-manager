@@ -20,7 +20,16 @@ namespace Finance_manager
     public partial class MainWindow : Window
     {
         User currUser;
+        private string login;
 
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+        public MainWindow(string l)
+        {
+            this.login = l;
+        }
         public MainWindow(User user)
         {
             InitializeComponent();
@@ -37,9 +46,27 @@ namespace Finance_manager
             myPieChart.Series.Add(new PieSeries { Title = "6", Fill = Brushes.Orange, StrokeThickness = 5, Values = new ChartValues<double> { 25.0 } });
 
             #endregion
-
             DataContext = this;
         }
+
+
+        private void AddIncomeClick_Click(object sender, RoutedEventArgs e)
+        {
+            AddTransactionMenu menu = new(currUser);
+            menu.Title.Content = "New income";
+            NavigateToAddPage.NavigationService.Navigate(menu);
+
+        }
+
+        private void AddSpendsClick_Click(object sender, RoutedEventArgs e)
+        {
+            AddTransactionMenu menu = new(currUser);
+            menu.Title.Content = "New spend";
+            menu.isCreditingtransaction = false;
+            NavigateToAddPage.NavigationService.Navigate(menu);
+
+        }
+
 
         private void ToOpenHistory_Click(object sender, RoutedEventArgs e)
         {

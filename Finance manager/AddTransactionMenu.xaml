@@ -1,0 +1,53 @@
+﻿<Page x:Class="Finance_manager.AddTransactionMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:Finance_manager"
+      mc:Ignorable="d" 
+      d:MinHeight="450" d:MinWidth="340" Background="White"
+      Title="AddTransactionMenu">
+    <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
+        <DockPanel>
+            <Button Margin="5" Name ="CloseBtn"
+           HorizontalAlignment="Left"   
+           IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+           Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+           ToolTip="MaterialDesignFloatingActionMiniButton" Click="CloseBtn_Click">
+                <materialDesign:PackIcon Kind="CloseThick"/>
+            </Button>
+            <Label Content="New income" Name="Title" DockPanel.Dock="Bottom" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-50, 0, 0, 0" FontWeight="Black"/>
+        </DockPanel>
+        <DatePicker Name="datePicker" IsDropDownOpen="False" SelectedDateFormat="Short"/>
+        <ComboBox Name="CategoriesList" Text="Select a category..."/>
+        <Border Background="MediumPurple" Margin="10, 60, 10, 10">
+            <DockPanel Height="25" LastChildFill="False">
+                <Label>
+                    <materialDesign:PackIcon Kind="Cash"/>
+                </Label>
+                <TextBox Name="ValueToEnter" Width="220">
+                </TextBox>
+                <Button DockPanel.Dock="Right" x:Name="CancelBtn" Click="CancelBtn_Click">
+                    <materialDesign:PackIcon Kind="CloseCircle" Margin="-6, -12"/>
+                </Button>
+            </DockPanel>
+        </Border>
+
+
+        <UniformGrid Columns="3" Rows="3" Margin="2">
+            <Button Height="50" Margin="3" Click="Button_Click">1</Button>
+            <Button Height="50" Margin="3" Click="Button_Click">2</Button>
+            <Button Height="50" Margin="3" Click="Button_Click">3</Button>
+            <Button Height="50" Margin="3" Click="Button_Click">4</Button>
+            <Button Height="50" Margin="3" Click="Button_Click">5</Button>
+            <Button Height="50" Margin="3" Click="Button_Click">6</Button>
+            <Button Height="50" Margin="3" Click="Button_Click">7</Button>
+            <Button Height="50" Margin="3" Click="Button_Click">8</Button>
+            <Button Height="50" Margin="3" Click="Button_Click">9</Button>
+        </UniformGrid>
+        <Button Height="50" Name="AcceptBtn" Margin="10" Click="AcceptBtn_Click">Accept</Button>
+    </StackPanel>
+    
+</Page>

@@ -34,24 +34,24 @@ namespace Finance_manager
 
         private void LogInBtn_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow mw = new MainWindow();
             Validation();
         }
-
         private void Validation()
         {
             if (loginTxtBox.Text != string.Empty && passTxtBox.Text != string.Empty)
             {
-                User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault();
-                if(user != null)
-                {
-                    if(BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
-                    {
-                        MainWindow mw = new MainWindow(user);
-                        mw.ShowDialog();
-                    }
-                }
+                //User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault();
+                //if (user != null)
+                //{
+                //    if (BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
+                //{
+                    MainWindow mw = new MainWindow(new User());
+                    mw.ShowDialog();
+                    //    }
+                    //}
 
-                loginTxtBox.Text = string.Empty;
+                    loginTxtBox.Text = string.Empty;
                 passTxtBox.Text = string.Empty;
                 Hide();
             }
