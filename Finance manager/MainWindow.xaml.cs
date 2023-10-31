@@ -21,7 +21,6 @@ namespace Finance_manager
     {
         User currUser;
         private string login;
-        public string SelectegCateg { get; set; }
 
         public MainWindow()
         {
@@ -67,10 +66,5 @@ namespace Finance_manager
 
         }
 
-
-        private void CategoryBtn_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }
