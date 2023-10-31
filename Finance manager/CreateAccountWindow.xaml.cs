@@ -56,7 +56,7 @@ namespace Finance_manager
                 MessageBox.Show("Invalid info.", e.Message);
             }
         }
-
+        //Add method to create user in database
         private void PolicyBtn_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(@"

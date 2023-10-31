@@ -19,8 +19,24 @@ namespace Finance_manager
 {
     public partial class MainWindow : Window
     {
-        User currUser = new();
+        ViewModel.ViewModel vm = new();
+        User currUser;
+        private string login;
+        public string SelectegCateg { get; set; }
 
+        public MainWindow()
+        {
+            InitializeComponent();
+            if (SelectegCateg != null)
+            {
+                vm.SelectedText = SelectegCateg;
+            }
+            this.DataContext = vm;
+        }
+        public MainWindow(string l)
+        {
+            this.login = l;
+        }
         public MainWindow(User user)
         {
             InitializeComponent();
@@ -57,5 +73,14 @@ namespace Finance_manager
 
         }
 
+
+        private void CategoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryWindow categoryWindow = new CategoryWindow();
+            if (categoryWindow.ShowDialog() == true ) 
+            {
+                vm.SelectedText = categoryWindow.SelectegCateg;
+            }
+        }
     }
 }

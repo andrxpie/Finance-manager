@@ -35,12 +35,6 @@ namespace Finance_manager
         {
             MainWindow mw = new MainWindow();
             Validation();
-
-            //if (Validation())
-            //{
-                mw.Show();
-            //}
-
         }
         private void Validation()
         {
