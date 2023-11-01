@@ -21,16 +21,9 @@
 
             </DockPanel>
 
-            <lvc:PieChart x:Name="myPieChart" StartingRotationAngle="0" Height="200" Margin="40" InnerRadius="50" LegendLocation="None" Hoverable="True" BorderThickness="1" />
-       
-                <materialDesign:Chip.Icon>
-                    <Image/>
-                </materialDesign:Chip.Icon>
-            </materialDesign:Chip>
+            <lvc:PieChart x:Name="myPieChart" StartingRotationAngle="0" Height="200" Margin="40" InnerRadius="50" LegendLocation="None" Hoverable="True" BorderThickness="1"/>
             <Button Click="ToOpenHistory_Click">History</Button>
-        </DockPanel>
-        <lvc:PieChart x:Name="myPieChart" StartingRotationAngle="0" Height="200" Margin="40" InnerRadius="50" LegendLocation="None" Hoverable="True" BorderThickness="1" />
-        <Border Height="30" DockPanel.Dock="Right" Background="MediumPurple" Width="200">
+            <Border Height="30" DockPanel.Dock="Right" Background="MediumPurple" Width="200">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Balance : " FontSize="18" FontWeight="DemiBold"/>
                 <Label Name="BalanceValue" Content="0" FontSize="18" FontWeight="DemiBold"/>
