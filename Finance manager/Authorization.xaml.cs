@@ -22,6 +22,7 @@ namespace Finance_manager
         public Authorization()
         {
             InitializeComponent();
+
         }
 
         private void CreateAccBtn_Click(object sender, RoutedEventArgs e)
@@ -35,28 +36,22 @@ namespace Finance_manager
         {
             MainWindow mw = new MainWindow();
             Validation();
-
-            //if (Validation())
-            //{
-                mw.Show();
-            //}
-
         }
         private void Validation()
         {
             if (loginTxtBox.Text != string.Empty && passTxtBox.Text != string.Empty)
             {
-                User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault();
-                if(user != null)
-                {
-                    if(BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
-                    {
-                        MainWindow mw = new MainWindow(user);
-                        mw.ShowDialog();
-                    }
-                }
+                //User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault();
+                //if (user != null)
+                //{
+                //    if (BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
+                //{
+                    MainWindow mw = new MainWindow(new User());
+                    mw.ShowDialog();
+                    //    }
+                    //}
 
-                loginTxtBox.Text = string.Empty;
+                    loginTxtBox.Text = string.Empty;
                 passTxtBox.Text = string.Empty;
                 Hide();
             }
