@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Finance_manager"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-        xmlns:viewmodel="clr-namespace:Finance_manager.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ViewModel}"
+        xmlns:viewmodel="clr-namespace:Finance_manager.ViewModel"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
