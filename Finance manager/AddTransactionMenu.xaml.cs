@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Finance_manager
 {
-    /// <summary>
-    /// Interaction logic for AddTransactionMenu.xaml
-    /// </summary>
     public partial class AddTransactionMenu : Page
     {
         private static User currUser = new();

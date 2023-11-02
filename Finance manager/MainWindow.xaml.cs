@@ -21,16 +21,10 @@ namespace Finance_manager
     {
         ViewModel.ViewModel vm = new();
         private string login;
-        public string SelectegCateg { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-            if (SelectegCateg != null)
-            {
-                vm.SelectedText = SelectegCateg;
-            }
-            this.DataContext = vm;
         }
         public MainWindow(string l)
         {
@@ -74,13 +68,11 @@ namespace Finance_manager
         }
 
 
-        private void CategoryBtn_Click(object sender, RoutedEventArgs e)
+        private void ToOpenHistory_Click(object sender, RoutedEventArgs e)
         {
-            CategoryWindow categoryWindow = new CategoryWindow();
-            if (categoryWindow.ShowDialog() == true ) 
-            {
-                vm.SelectedText = categoryWindow.SelectegCateg;
-            }
+            HistoryOfTransactions historyOfTransactions = new HistoryOfTransactions(currUser);
+            this.Close();
+            historyOfTransactions.Show();
         }
     }
 }

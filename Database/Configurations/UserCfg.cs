@@ -16,7 +16,6 @@ namespace Finance_manager
 
             builder.Property(x => x.Login).IsRequired();
             builder.Property(x => x.Password).IsRequired();
-            builder.Ignore(x => x.PasswordOpen);
             builder.Property(x => x.Balance).IsRequired();
             builder.Property(x => x.Email).IsRequired();
     
