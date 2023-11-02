@@ -41,16 +41,16 @@ namespace Finance_manager
         {
             if (loginTxtBox.Text != string.Empty && passTxtBox.Text != string.Empty)
             {
-                User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault();
+                //User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault();
 
-                if (user != null)
-                {
-                    if (BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
-                    {
+                //if (user != null)
+                //{
+                    //if (BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
+                    //{
                         MainWindow mw = new MainWindow(new User());
                         mw.ShowDialog();
-                    }
-                }
+                //    }
+                //}
 
                 loginTxtBox.Text = string.Empty;
                 passTxtBox.Text = string.Empty;
