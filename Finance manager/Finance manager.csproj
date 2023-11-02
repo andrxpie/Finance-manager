@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="media\**" />
+    <EmbeddedResource Remove="media\**" />
+    <None Remove="media\**" />
+    <Page Remove="media\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BCrypt.Net" Version="0.1.0" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
@@ -21,10 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Database\Data access.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="media\categories icons\" />
   </ItemGroup>
 
 </Project>

@@ -20,7 +20,6 @@ namespace Finance_manager
     public partial class MainWindow : Window
     {
         ViewModel.ViewModel vm = new();
-        User currUser;
         private string login;
         public string SelectegCateg { get; set; }
 
@@ -41,7 +40,7 @@ namespace Finance_manager
         {
             InitializeComponent();
 
-            user = currUser;
+            vm.CurrUser = user;
 
             #region Test
             myPieChart.Series.Add(new PieSeries { Title = "1", Fill = Brushes.Red, StrokeThickness = 5, Values = new ChartValues<double> { 10.0 } });
@@ -53,12 +52,13 @@ namespace Finance_manager
             myPieChart.Series.Add(new PieSeries { Title = "6", Fill = Brushes.Orange, StrokeThickness = 5, Values = new ChartValues<double> { 25.0 } });
 
             #endregion
-            DataContext = this;
+
+            DataContext = vm;
         }
 
         private void AddIncomeClick_Click(object sender, RoutedEventArgs e)
         {
-            AddTransactionMenu menu = new(currUser);
+            AddTransactionMenu menu = new(vm.CurrUser);
             menu.Title.Content = "New income";
             NavigateToAddPage.NavigationService.Navigate(menu);
 
@@ -66,7 +66,7 @@ namespace Finance_manager
 
         private void AddSpendsClick_Click(object sender, RoutedEventArgs e)
         {
-            AddTransactionMenu menu = new(currUser);
+            AddTransactionMenu menu = new(vm.CurrUser);
             menu.Title.Content = "New spend";
             menu.isCreditingtransaction = false;
             NavigateToAddPage.NavigationService.Navigate(menu);

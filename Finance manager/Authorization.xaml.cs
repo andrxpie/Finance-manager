@@ -26,37 +26,53 @@ namespace Finance_manager
 
         private void CreateAccBtn_Click(object sender, RoutedEventArgs e)
         {
+            Hide();
+
             CreateAccountWindow createAccountWindow = new CreateAccountWindow();
-            Close();
-            createAccountWindow.Show();
+            createAccountWindow.ShowDialog();
+
+            Show();
         }
 
         private void LogInBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
             Validation();
         }
+
         private void Validation()
         {
             if (loginTxtBox.Text != string.Empty && passTxtBox.Text != string.Empty)
             {
-                //User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault();
-                //if (user != null)
-                //{
-                //    if (BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
-                //{
-                    MainWindow mw = new MainWindow(new User());
-                    mw.ShowDialog();
-                    //    }
-                    //}
+                try
+                {
+                    User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).First();
+                    if (BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
+                    {
+                        Hide();
+
+                        MainWindow mw = new MainWindow(user);
+                        mw.ShowDialog();
+
+                        ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Incorrect login or password.");
+                    }
 
                     loginTxtBox.Text = string.Empty;
-                passTxtBox.Text = string.Empty;
-                Hide();
+                    passTxtBox.Text = string.Empty;
+
+                    Hide();
+                }
+                catch
+                {
+                    MessageBox.Show("Incorrect login or password.");
+                }
             }
             else
             {
-                MessageBox.Show("Incorrect login or password");
+                MessageBox.Show("Login && password is empty.");
             }
         }
     }

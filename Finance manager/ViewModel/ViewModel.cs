@@ -16,6 +16,8 @@ namespace Finance_manager.ViewModel
         private string selectedText;
         private IUoW uoW = new UnitOfWork();
         private ObservableCollection<Category> categories;
+        
+        public User CurrUser { get; set; }
 
         public string SelectedText
         {

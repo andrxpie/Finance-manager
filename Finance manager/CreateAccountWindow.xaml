@@ -14,49 +14,34 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="CreateAccountWindow" Height="530" Width="340">
-    <Grid>
-        <!--#region Definitions -->
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="63"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="63"/>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <!--#endregion-->
-        <!--#region Label -->
-        <Label Grid.Column="1" Grid.ColumnSpan="2" Content="Login" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"/>
-        <Label Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Center" Content="Email" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
-        <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="Passwords" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"/>
-        <Label Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Content="Confirm Password" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"/>
-        <!--#endregion-->
-
-        <!--#region TextBox -->
-        <TextBox Name="loginTxtBox" Background="LightGray" Grid.Row="1" Grid.ColumnSpan="4" Margin="15"/>
-        <TextBox Name="emailTxtBox" Background="LightGray" Grid.Row="2" Grid.ColumnSpan="4" Margin="15"/>
-        <TextBox Name="passTxtBox" Background="LightGray" Grid.Row="4" Grid.ColumnSpan="4" Margin="15"/>
-        <TextBox Name="passSecTxtBox" Background="LightGray" Grid.Row="6" Grid.ColumnSpan="4" Margin="15"/>
-        <!--#endregion-->
-
-        <CheckBox Grid.Row="7" Name="policyCheckBox" Grid.ColumnSpan="3" IsChecked="False"
-                  Style="{StaticResource MaterialDesignCheckBox}" />
-        <Button Grid.Row="7" Grid.ColumnSpan="4" Foreground="LightGray" Margin="10" HorizontalAlignment="Right"
-  Click="PolicyBtn_Click"
-  Content="agreement with the rules to the client"
-  Style="{StaticResource MaterialDesignFlatDarkButton}"
-  ToolTip="MaterialDesignFlatButton" />
-
-        <Button Name="createBtn" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Content="Click!" Click="CreateAccBtn_Click"/>
+    <StackPanel Margin="10">
+        <Label Content="Login" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"/>
+        <TextBox Name="loginTxtBox" Background="LightGray" Margin="0 0 0 10" Width="285"/>
         
-    </Grid>
+        <Label VerticalAlignment="Center" Content="Email (optional)" HorizontalAlignment="Center"/>
+        <TextBox Name="emailTxtBox" Background="LightGray" Margin="0 0 0 10" Width="285"/>
+        
+        <Label Content="Passwords" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"/>
+        <TextBox Name="passTxtBox" Background="LightGray" Margin="0 0 0 10" Width="285"/>
+        
+        <Label Content="Confirm Password" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"/>
+        <TextBox Name="passSecTxtBox" Background="LightGray" Margin="0 0 0 10" Width="285"/>
+
+        <Label Content="Avatar (optional)" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <TextBox Name="avatarTxtBox" Background="LightGray" Margin="0 0 0 10" Width="285"/>
+        <Button Click="SelectImageBtn" Width="285" Margin="0 0 0 30">Select image</Button>
+
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+            <CheckBox Name="policyCheckBox" IsChecked="False" Margin="60 0 0 0"
+                      Style="{StaticResource MaterialDesignCheckBox}"/>
+            <Button Foreground="LightGray"
+                    Click="PolicyBtn_Click"
+                    Content="Agreement with the rules"
+                    Width="190"
+                    Style="{StaticResource MaterialDesignFlatDarkButton}"
+                    ToolTip="MaterialDesignFlatButton"/>
+        </StackPanel>
+        
+        <Button Name="createBtn" Content="Click!" Click="CreateAccBtn_Click"/>
+    </StackPanel>
 </Window>

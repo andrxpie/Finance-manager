@@ -1,8 +1,11 @@
 ﻿using BCrypt.Net;
 using Data_access.Repositories;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,13 +15,12 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Finance_manager
 {
     public partial class CreateAccountWindow : Window
     {
-        UnitOfWork uow = new();
+        private UnitOfWork uow = new();
 
         public CreateAccountWindow()
         {
@@ -32,31 +34,66 @@ namespace Finance_manager
 
         private void CheckValid()
         {
-            Exception e = new Exception();
-              
-            if (passTxtBox.Text == passSecTxtBox.Text && loginTxtBox.Text != string.Empty && policyCheckBox.IsChecked == true)
+            try
             {
-                Authorization auth = new Authorization();
-                Close();
+                if (passTxtBox.Text == passSecTxtBox.Text && loginTxtBox.Text != string.Empty && policyCheckBox.IsChecked == true)
+                {
+                    User user = new User();
 
-                User user = new User();
-                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(passTxtBox.Text);
-                user.Login = loginTxtBox.Text;
-                user.Password = hashedPassword;
-                user.Email = emailTxtBox.Text;
-                user.PasswordOpen = passTxtBox.Text;
+                    if(uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault() != null) 
+                    {
+                        MessageBox.Show("Login already in use.");
+                        loginTxtBox.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        user.Login = loginTxtBox.Text;
+                    }
 
-                uow.UserRepo.Insert(user);
-                uow.Save();
+                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(passTxtBox.Text);
+                    user.Password = hashedPassword;
+                    user.PasswordOpen = passTxtBox.Text;
 
-                auth.Show();
+                    if(emailTxtBox.Text != string.Empty) 
+                    {
+                        if(uow.UserRepo.Get(x => x.Email == emailTxtBox.Text).FirstOrDefault() != null)
+                        {
+                            MessageBox.Show("Email already in use.");
+                            emailTxtBox.Focus();
+                            return;
+                        }
+                        else
+                        {
+                            user.Email = emailTxtBox.Text;
+                        }
+                    }
+
+                    if(avatarTxtBox.Text != string.Empty) 
+                    {
+                        try
+                        {
+                            File.Copy(avatarTxtBox.Text, Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "media\\avatars", Path.GetFileName(avatarTxtBox.Text)));
+                            user.AvatarPicture = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "media\\avatars", Path.GetFileName(avatarTxtBox.Text));
+                        }
+                        catch
+                        {
+                            MessageBox.Show("File exist.", "Message", MessageBoxButton.OK);
+                        }
+                    }
+
+                    uow.UserRepo.Insert(user);
+                    uow.Save();
+
+                    Close();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid info.", e.Message);
+                MessageBox.Show("Exception: ", ex.Message);
             }
         }
-        //Add method to create user in database
+
         private void PolicyBtn_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(@"
@@ -65,6 +102,12 @@ consectetur adipiscing elit,
 sed do eiusmod tempor incididunt
 ut labore et dolore magna aliqua.
 ");
+        }
+
+        private void SelectImageBtn(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if(ofd.ShowDialog() == true) { avatarTxtBox.Text = ofd.FileName; }
         }
     }
 }
