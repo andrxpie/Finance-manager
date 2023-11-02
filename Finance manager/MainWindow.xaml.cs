@@ -20,16 +20,7 @@ namespace Finance_manager
     public partial class MainWindow : Window
     {
         ViewModel.ViewModel vm = new();
-        private string login;
 
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-        public MainWindow(string l)
-        {
-            this.login = l;
-        }
         public MainWindow(User user)
         {
             InitializeComponent();
@@ -55,7 +46,6 @@ namespace Finance_manager
             AddTransactionMenu menu = new(vm.CurrUser);
             menu.Title.Content = "New income";
             NavigateToAddPage.NavigationService.Navigate(menu);
-
         }
 
         private void AddSpendsClick_Click(object sender, RoutedEventArgs e)
@@ -64,15 +54,14 @@ namespace Finance_manager
             menu.Title.Content = "New spend";
             menu.isCreditingtransaction = false;
             NavigateToAddPage.NavigationService.Navigate(menu);
-
         }
-
 
         private void ToOpenHistory_Click(object sender, RoutedEventArgs e)
         {
-            HistoryOfTransactions historyOfTransactions = new HistoryOfTransactions(currUser);
-            this.Close();
-            historyOfTransactions.Show();
+            Close();
+
+            HistoryOfTransactions historyOfTransactions = new HistoryOfTransactions(vm.CurrUser);
+            historyOfTransactions.ShowDialog();
         }
     }
 }

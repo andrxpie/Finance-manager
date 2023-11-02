@@ -53,7 +53,6 @@ namespace Finance_manager
 
                     string hashedPassword = BCrypt.Net.BCrypt.HashPassword(passTxtBox.Text);
                     user.Password = hashedPassword;
-                    user.PasswordOpen = passTxtBox.Text;
 
                     if(emailTxtBox.Text != string.Empty) 
                     {
