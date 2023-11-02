@@ -21,7 +21,7 @@
 
             </DockPanel>
 
-            <lvc:PieChart x:Name="myPieChart" StartingRotationAngle="0" Height="200" Margin="40" InnerRadius="50" LegendLocation="None" Hoverable="True" BorderThickness="1"/>
+            <lvc:PieChart x:Name="myPieChart" DataTooltip="{x:Null}" StartingRotationAngle="0" Height="200" Margin="40" InnerRadius="50" LegendLocation="Left" Hoverable="True" BorderThickness="1"/>
             <Button Click="ToOpenHistory_Click">History</Button>
             <Border Height="30" DockPanel.Dock="Right" Background="MediumPurple" Width="200">
             <StackPanel Orientation="Horizontal">
