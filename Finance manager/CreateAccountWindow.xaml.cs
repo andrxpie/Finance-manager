@@ -32,9 +32,13 @@ namespace Finance_manager
 
         private void CheckValid()
         {
-            Exception e = new Exception();
-              
-            if (passTxtBox.Text == passSecTxtBox.Text && loginTxtBox.Text != string.Empty && policyCheckBox.IsChecked == true)
+            if (passTxtBox.Text == passSecTxtBox.Text
+                && loginTxtBox.Text != string.Empty 
+                && policyCheckBox.IsChecked == true 
+                && emailTxtBox.Text.Contains("@gmail.com") 
+                && emailTxtBox.Text.Length >= 15 
+                && loginTxtBox.Text.Length > 5
+                && passTxtBox.Text.Length > 8)
             {
                 Authorization auth = new Authorization();
                 Close();
@@ -50,7 +54,7 @@ namespace Finance_manager
             }
             else
             {
-                MessageBox.Show("Invalid info.", e.Message);
+                MessageBox.Show("Invalid info.");
             }
         }
         //Add method to create user in database
