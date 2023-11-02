@@ -46,6 +46,7 @@ namespace Finance_manager
             this.DialogResult = true;
             Close();
         }
+
         private void CategoryListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (categLB.SelectedItem != null)

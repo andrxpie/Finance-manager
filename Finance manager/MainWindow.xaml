@@ -34,7 +34,7 @@
         <Border Height="30" DockPanel.Dock="Right" Background="MediumPurple" Width="200">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Balance : " FontSize="18" FontWeight="DemiBold"/>
-                <Label Name="BalanceValue" Content="{Binding currUser.Balance}" FontSize="18" FontWeight="DemiBold"/>
+                <Label Name="BalanceValue" Content="{Binding CurrUser.Balance}" FontSize="18" FontWeight="DemiBold"/>
             </StackPanel>
         </Border>
         <DockPanel LastChildFill="False" Height="75">

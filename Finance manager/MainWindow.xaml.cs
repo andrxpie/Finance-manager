@@ -56,6 +56,15 @@ namespace Finance_manager
             NavigateToAddPage.NavigationService.Navigate(menu);
         }
 
+        private void CategoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryWindow categoryWindow = new CategoryWindow();
+            if (categoryWindow.ShowDialog() == true ) 
+            {
+                vm.SelectedText = categoryWindow.SelectegCateg;
+            }
+        }
+
         private void ToOpenHistory_Click(object sender, RoutedEventArgs e)
         {
             Close();
