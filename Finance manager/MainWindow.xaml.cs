@@ -35,7 +35,6 @@ namespace Finance_manager
             myPieChart.Series.Add(new PieSeries { Title = "4", Fill = Brushes.Tomato, StrokeThickness = 5, Values = new ChartValues<double> { 10.0 } });
             myPieChart.Series.Add(new PieSeries { Title = "5", Fill = Brushes.Purple, StrokeThickness = 5, Values = new ChartValues<double> { 25.0 } });
             myPieChart.Series.Add(new PieSeries { Title = "6", Fill = Brushes.Orange, StrokeThickness = 5, Values = new ChartValues<double> { 25.0 } });
-
             #endregion
 
             DataContext = vm;

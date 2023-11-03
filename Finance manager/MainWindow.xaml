@@ -21,6 +21,7 @@
                     </materialDesign:Chip.Icon>
                 </materialDesign:Chip>
             </DockPanel>
+
             <Button Click="ToOpenHistory_Click">History</Button>
         
         <!--#region Categories -->
