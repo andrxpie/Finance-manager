@@ -57,6 +57,7 @@ namespace Finance_manager
                     IsCrediting = true,
                     CategoryId = categories.Where(x => x.Name == ((Category)CategoriesList.SelectedItem).Name).Select(x => x.Id).FirstOrDefault()
                 });
+
                 Uow.Save();
             }
             else
@@ -69,6 +70,7 @@ namespace Finance_manager
                     IsCrediting = false,
                     CategoryId = categories.Where(x => x.Name == ((Category)CategoriesList.SelectedItem).Name).Select(x => x.Id).First()
                 });
+
                 Uow.Save();
             }
         }
