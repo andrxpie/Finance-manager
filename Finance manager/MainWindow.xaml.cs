@@ -44,7 +44,7 @@ namespace Finance_manager
         {
             AddTransactionMenu menu = new(vm.CurrUser);
             menu.Title.Content = "New income";
-            NavigateToAddPage.NavigationService.Navigate(menu);
+            Navigator.NavigationService.Navigate(menu);
         }
 
         private void AddSpendsClick_Click(object sender, RoutedEventArgs e)
@@ -52,7 +52,7 @@ namespace Finance_manager
             AddTransactionMenu menu = new(vm.CurrUser);
             menu.Title.Content = "New spend";
             menu.isCreditingtransaction = false;
-            NavigateToAddPage.NavigationService.Navigate(menu);
+            Navigator.NavigationService.Navigate(menu);
         }
 
         private void CategoryBtn_Click(object sender, RoutedEventArgs e)
@@ -72,6 +72,14 @@ namespace Finance_manager
             historyOfTransactions.ShowDialog();
 
             ShowDialog();
+        }
+
+        private void Chip_Click(object sender, RoutedEventArgs e)
+        {
+            ViewProfile vp = new ViewProfile(vm.CurrUser);
+            
+            Navigator.NavigationService.Navigate(vp);
+
         }
     }
 }

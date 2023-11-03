@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Finance_manager.Migrations
+namespace Data_access.Migrations
 {
     [DbContext(typeof(FinanceManagerDbContext))]
     partial class FinanceManagerDbContextModelSnapshot : ModelSnapshot
@@ -167,7 +167,7 @@ namespace Finance_manager.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            DateTime = new DateTime(2023, 11, 3, 18, 38, 17, 655, DateTimeKind.Local).AddTicks(3652),
+                            DateTime = new DateTime(2023, 11, 3, 20, 14, 24, 265, DateTimeKind.Local).AddTicks(9967),
                             IsCrediting = true,
                             Sum = 5000,
                             UserId = 1
@@ -176,7 +176,7 @@ namespace Finance_manager.Migrations
                         {
                             Id = 2,
                             CategoryId = 5,
-                            DateTime = new DateTime(2023, 11, 3, 18, 38, 17, 655, DateTimeKind.Local).AddTicks(3656),
+                            DateTime = new DateTime(2023, 11, 3, 20, 14, 24, 265, DateTimeKind.Local).AddTicks(9970),
                             IsCrediting = false,
                             Sum = 15000,
                             UserId = 2

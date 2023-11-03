@@ -1,5 +1,4 @@
 ﻿using Data_access.Repositories;
-using Finance_manager.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

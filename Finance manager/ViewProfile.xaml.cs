@@ -20,9 +20,12 @@ namespace Finance_manager
     /// </summary>
     public partial class ViewProfile : Page
     {
-        public ViewProfile()
+        public User currUser { get; set; }
+        public ViewProfile(User us)
         {
+            currUser = us;
             InitializeComponent();
         }
+
     }
 }

@@ -4,11 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Finance_manager"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="340"
       Title="ViewProfile" Background="White">
-
     <StackPanel>
-
+        <Image Source="{Binding CurrUser.AvatarPicture}" Height="70" Width="70">
+            
+        </Image>
     </StackPanel>
 </Page>

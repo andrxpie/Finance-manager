@@ -14,7 +14,8 @@
             <DockPanel LastChildFill="False" Height="50">
                 <materialDesign:Chip
                     Content="{Binding CurrUser.Login}"
-                    Style="{StaticResource MaterialDesignOutlineChip}">
+                    Style="{StaticResource MaterialDesignOutlineChip}"
+                    Click="Chip_Click">
                     
                     <materialDesign:Chip.Icon>
                         <Image Source="{Binding CurrUser.AvatarPicture}" Stretch="UniformToFill"/>
@@ -56,6 +57,6 @@
         </DockPanel>
         
     </StackPanel>
-        <Frame Name="NavigateToAddPage" NavigationUIVisibility="Hidden"/>
+        <Frame Name="Navigator" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

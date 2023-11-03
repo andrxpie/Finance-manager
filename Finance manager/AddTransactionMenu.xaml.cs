@@ -1,5 +1,4 @@
 ﻿using Data_access.Repositories;
-using Finance_manager.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,8 +40,7 @@ namespace Finance_manager
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(ValueToEnter.Text.Length != 0)
-            ValueToEnter.Text = ValueToEnter.Text.Substring(0, ValueToEnter.Text.Length - 1);
+            ValueToEnter.Text = "";
         }
 
         private void AcceptBtn_Click(object sender, RoutedEventArgs e)
