@@ -20,7 +20,18 @@ namespace Finance_manager
     public partial class MainWindow : Window
     {
         ViewModel.ViewModel vm = new();
+        private string login;
+        public string SelectegCateg { get; set; }
 
+        public MainWindow()
+        {
+            InitializeComponent();
+            if (SelectegCateg != null)
+            {
+                vm.SelectedText = SelectegCateg;
+            }
+            this.DataContext = vm;
+        }
         public MainWindow(User user)
         {
             InitializeComponent();
