@@ -21,6 +21,7 @@
                     </materialDesign:Chip.Icon>
                 </materialDesign:Chip>
             </DockPanel>
+            <Button Click="ToOpenHistory_Click">History</Button>
         
         <!--#region Categories -->
         <StackPanel>
@@ -30,8 +31,8 @@
         <!--#endregion-->
         
         <lvc:PieChart x:Name="myPieChart" DataTooltip="{x:Null}" StartingRotationAngle="0" Height="200" Margin="40" InnerRadius="50" LegendLocation="None" Hoverable="True" BorderThickness="1" />
-       
-        <Border Height="30" DockPanel.Dock="Right" Background="MediumPurple" Width="200">
+
+            <Border Height="30" DockPanel.Dock="Right" Background="MediumPurple" Width="200">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Balance : " FontSize="18" FontWeight="DemiBold"/>
                 <Label Name="BalanceValue" Content="{Binding CurrUser.Balance}" FontSize="18" FontWeight="DemiBold"/>

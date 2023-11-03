@@ -67,10 +67,12 @@ namespace Finance_manager
 
         private void ToOpenHistory_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Hide();
 
             HistoryOfTransactions historyOfTransactions = new HistoryOfTransactions(vm.CurrUser);
             historyOfTransactions.ShowDialog();
+
+            ShowDialog();
         }
     }
 }

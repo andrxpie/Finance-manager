@@ -39,9 +39,7 @@ namespace Finance_manager
 
         private void BackToMainMenu_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow(currentUser);
-            this.Close();
-            mainWindow.Show();
+            Close();
         }
     }
 }
