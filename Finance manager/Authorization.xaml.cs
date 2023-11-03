@@ -11,7 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.IO;
 
 namespace Finance_manager
 {
@@ -22,43 +22,57 @@ namespace Finance_manager
         public Authorization()
         {
             InitializeComponent();
-
         }
 
         private void CreateAccBtn_Click(object sender, RoutedEventArgs e)
         {
+            Hide();
+
             CreateAccountWindow createAccountWindow = new CreateAccountWindow();
-            Close();
-            createAccountWindow.Show();
+            createAccountWindow.ShowDialog();
+
+            Show();
         }
 
         private void LogInBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
             Validation();
         }
+
         private void Validation()
         {
             if (loginTxtBox.Text != string.Empty && passTxtBox.Text != string.Empty)
             {
-                //User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault();
+                try
+                {
+                    User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).First();
+                    if (BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
+                    {
+                        Hide();
 
-                //if (user != null)
-                //{
-                    //if (BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
-                    //{
-                        MainWindow mw = new MainWindow(new User());
+                        MainWindow mw = new MainWindow(user);
                         mw.ShowDialog();
-                //    }
-                //}
 
-                loginTxtBox.Text = string.Empty;
-                passTxtBox.Text = string.Empty;
-                Hide();
+                        ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Incorrect login or password.");
+                    }
+
+                    loginTxtBox.Text = string.Empty;
+                    passTxtBox.Text = string.Empty;
+
+                    Hide();
+                }
+                catch
+                {
+                    MessageBox.Show("Incorrect login or password.");
+                }
             }
             else
             {
-                MessageBox.Show("Incorrect login or password");
+                MessageBox.Show("Login && password is empty.");
             }
         }
     }

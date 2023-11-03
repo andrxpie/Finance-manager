@@ -13,5 +13,10 @@ namespace Finance_manager
         public string Name { get; set; } 
         public IEnumerable<Transaction> Transactions { get; set; }
         public IEnumerable<User> Users { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }   
