@@ -45,21 +45,31 @@ namespace Finance_manager
 
         private void AcceptBtn_Click(object sender, RoutedEventArgs e)
         {
-            Transaction transaction = new Transaction()
+            if (CheckValues() == true)
             {
-                Sum = Convert.ToInt32(ValueToEnter.Text),
-                UserId = currUser.Id,
-                DateTime = new DateTime(datePicker.SelectedDate.Value.Year, datePicker.SelectedDate.Value.Month, datePicker.SelectedDate.Value.Day),
-                CategoryId = categories.Where(x => x.Name == ((Category)CategoriesList.SelectedItem).Name).Select(x => x.Id).FirstOrDefault()
-            };
+                Transaction transaction = new Transaction()
+                {
+                    Sum = Convert.ToInt32(ValueToEnter.Text),
+                    UserId = currUser.Id,
+                    DateTime = new DateTime(datePicker.SelectedDate.Value.Year, datePicker.SelectedDate.Value.Month, datePicker.SelectedDate.Value.Day),
+                    CategoryId = categories.Where(x => x.Name == ((Category)CategoriesList.SelectedItem).Name).Select(x => x.Id).FirstOrDefault()
+                };
 
-            if (isCreditingtransaction == true)
-                transaction.IsCrediting = true;
+                if (isCreditingtransaction == true)
+                    transaction.IsCrediting = true;
 
-            else transaction.IsCrediting = false;
+                else transaction.IsCrediting = false;
 
-            Uow.TransactionRepo.Insert(transaction);
-            Uow.Save();
+                Uow.TransactionRepo.Insert(transaction);
+                Uow.Save();
+            }
+        }
+
+        private bool CheckValues()
+        {
+            if (datePicker.SelectedDate.Value > DateTime.Now
+               && CategoriesList.SelectedItem == null)
+            { return false; } return true; 
         }
 
     }

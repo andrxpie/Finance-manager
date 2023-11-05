@@ -1,6 +1,12 @@
-﻿using System;
+﻿using Data_access.Repositories;
+using MaterialDesignThemes.Wpf;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Path = System.IO.Path;
 
 namespace Finance_manager
 {
@@ -20,12 +27,53 @@ namespace Finance_manager
     /// </summary>
     public partial class ViewProfile : Page
     {
-        public User currUser { get; set; }
+        private static IUoW uow = new UnitOfWork();
+
+        ViewModel.ViewModel vm = new();
+        public string TmpPath { get; set; }
+
         public ViewProfile(User us)
         {
-            currUser = us;
             InitializeComponent();
+            vm.CurrUser = us;
+            this.DataContext = vm;
         }
 
+
+        private void EditAvatarBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+
+            if (dialog.ShowDialog() == true)
+            {
+                TmpPath = Path.GetFullPath(dialog.FileName);
+                Image.Source = new BitmapImage(new Uri($"{TmpPath}", UriKind.Absolute));
+            }
+        }
+
+        private void AcceptBtn_Click(object sender, RoutedEventArgs e)
+        {
+            vm.CurrUser.AvatarPicture = TmpPath;
+            vm.CurrUser.Login = LoginToEdit.Text;
+            vm.CurrUser.Password = BCrypt.Net.BCrypt.HashPassword(LoginToEdit.Text);
+
+            uow.UserRepo.Update(vm.CurrUser);
+
+        }
+
+        private void CancelBtn2_Click(object sender, RoutedEventArgs e)
+        {
+            PasswordToEdit.Text = "";
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            LoginToEdit.Text = "";
+        }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(null);
+        }
     }
 }

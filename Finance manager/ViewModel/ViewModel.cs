@@ -7,7 +7,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Finance_manager.ViewModel
 {
@@ -16,19 +18,30 @@ namespace Finance_manager.ViewModel
         private string selectedText;
         private IUoW uoW = new UnitOfWork();
         private ObservableCollection<Category> categories;
+        public User CurrUser { get; set; }
+        public BitmapImage ImageSource { get; set; }
+        public string MyPassword { get; set; }
 
-        public  List<SolidColorBrush> colors = new List<SolidColorBrush>()
+
+        public SolidColorBrush[] colors = 
         {
             Brushes.AliceBlue,
             Brushes.Green,
             Brushes.Orange,
             Brushes.Orchid,
+            Brushes.Purple,
+            Brushes.Red,
+            Brushes.White,
+            Brushes.Yellow,
+            Brushes.YellowGreen,
+            Brushes.Aqua, 
+            Brushes.Aquamarine,
+            Brushes.BlueViolet,
+            Brushes.Magenta,
+            Brushes.LightYellow,
+            Brushes.Crimson,
+            Brushes.Fuchsia,
         };
-        
-       
-
-        public User CurrUser { get; set; }
-
         public string SelectedText
         {
            
@@ -55,8 +68,8 @@ namespace Finance_manager.ViewModel
             Random rnd = new Random();
             Categories = new ObservableCollection<Category>();
             ShowCategories();
-
         }
+
 
         private void ShowCategories()
         {
@@ -74,5 +87,6 @@ namespace Finance_manager.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }
