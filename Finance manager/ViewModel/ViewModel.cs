@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Finance_manager.ViewModel
 {
@@ -15,11 +16,22 @@ namespace Finance_manager.ViewModel
         private string selectedText;
         private IUoW uoW = new UnitOfWork();
         private ObservableCollection<Category> categories;
+
+        public  List<SolidColorBrush> colors = new List<SolidColorBrush>()
+        {
+            Brushes.AliceBlue,
+            Brushes.Green,
+            Brushes.Orange,
+            Brushes.Orchid,
+        };
         
+       
+
         public User CurrUser { get; set; }
 
         public string SelectedText
         {
+           
             get { return selectedText; }
             set
             {
@@ -40,8 +52,10 @@ namespace Finance_manager.ViewModel
 
         public ViewModel()
         {
+            Random rnd = new Random();
             Categories = new ObservableCollection<Category>();
             ShowCategories();
+
         }
 
         private void ShowCategories()

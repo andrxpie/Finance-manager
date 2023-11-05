@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LiveCharts;
+using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 
 namespace Finance_manager
@@ -26,18 +28,21 @@ namespace Finance_manager
             InitializeComponent();
 
             vm.CurrUser = user;
+            
 
             #region Test
-            myPieChart.Series.Add(new PieSeries { Title = "1", Fill = Brushes.Red, StrokeThickness = 5, Values = new ChartValues<double> { 10.0 } });
-            myPieChart.Series.Add(new PieSeries { Title = "2", Fill = Brushes.AliceBlue, StrokeThickness = 5, Values = new ChartValues<double> { 10.0 } });
-            myPieChart.Series.Add(new PieSeries { Title = "2", Fill = Brushes.Black, StrokeThickness = 5, Values = new ChartValues<double> { 10.0 } });
-            myPieChart.Series.Add(new PieSeries { Title = "3", Fill = Brushes.Yellow, StrokeThickness = 5, Values = new ChartValues<double> { 10.0 } });
-            myPieChart.Series.Add(new PieSeries { Title = "4", Fill = Brushes.Tomato, StrokeThickness = 5, Values = new ChartValues<double> { 10.0 } });
-            myPieChart.Series.Add(new PieSeries { Title = "5", Fill = Brushes.Purple, StrokeThickness = 5, Values = new ChartValues<double> { 25.0 } });
-            myPieChart.Series.Add(new PieSeries { Title = "6", Fill = Brushes.Orange, StrokeThickness = 5, Values = new ChartValues<double> { 25.0 } });
+            foreach(var i in vm.CurrUser.Transactions.ToList())
+            {
+                Random rnd = new Random();
+                myPieChart.Series.Add(new PieSeries
+                {
+                    Title = i.Category.Name,
+                    Fill = vm.colors.OrderBy(x => rnd.Next()).FirstOrDefault(),
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(i.Sum) },
+                    StrokeThickness = 5
+                });
+            } 
             #endregion
-
-            DataContext = vm;
         }
 
         private void AddIncomeClick_Click(object sender, RoutedEventArgs e)

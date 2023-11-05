@@ -72,8 +72,8 @@ namespace Finance_manager
                     {
                         try
                         {
-                            File.Copy(avatarTxtBox.Text, Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "media\\avatars", Path.GetFileName(avatarTxtBox.Text)));
-                            user.AvatarPicture = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "media\\avatars", Path.GetFileName(avatarTxtBox.Text));
+                            //File.Copy(avatarTxtBox.Text, Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "media\\avatars", Path.GetFileName(avatarTxtBox.Text)));
+                            //user.AvatarPicture = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "media\\avatars", Path.GetFileName(avatarTxtBox.Text));
                         }
                         catch
                         {

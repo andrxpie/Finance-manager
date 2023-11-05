@@ -45,32 +45,22 @@ namespace Finance_manager
 
         private void AcceptBtn_Click(object sender, RoutedEventArgs e)
         {
+            Transaction transaction = new Transaction()
+            {
+                Sum = Convert.ToInt32(ValueToEnter.Text),
+                UserId = currUser.Id,
+                DateTime = new DateTime(datePicker.SelectedDate.Value.Year, datePicker.SelectedDate.Value.Month, datePicker.SelectedDate.Value.Day),
+                CategoryId = categories.Where(x => x.Name == ((Category)CategoriesList.SelectedItem).Name).Select(x => x.Id).FirstOrDefault()
+            };
+
             if (isCreditingtransaction == true)
-            {
-                Uow.TransactionRepo.Insert(new Transaction()
-                {
-                    Sum = Convert.ToInt32(ValueToEnter.Text),
-                    UserId = currUser.Id,
-                    DateTime = new DateTime(datePicker.SelectedDate.Value.Year, datePicker.SelectedDate.Value.Month, datePicker.SelectedDate.Value.Day),
-                    IsCrediting = true,
-                    CategoryId = categories.Where(x => x.Name == ((Category)CategoriesList.SelectedItem).Name).Select(x => x.Id).FirstOrDefault()
-                });
+                transaction.IsCrediting = true;
 
-                Uow.Save();
-            }
-            else
-            {
-                Uow.TransactionRepo.Insert(new Transaction()
-                {
-                    Sum = Convert.ToInt32(ValueToEnter.Text),
-                    UserId = currUser.Id,
-                    DateTime = new DateTime(datePicker.SelectedDate.Value.Year, datePicker.SelectedDate.Value.Month, datePicker.SelectedDate.Value.Day),
-                    IsCrediting = false,
-                    CategoryId = categories.Where(x => x.Name == ((Category)CategoriesList.SelectedItem).Name).Select(x => x.Id).First()
-                });
+            else transaction.IsCrediting = false;
 
-                Uow.Save();
-            }
+            Uow.TransactionRepo.Insert(transaction);
+            Uow.Save();
         }
+
     }
 }

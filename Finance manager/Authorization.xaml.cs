@@ -45,7 +45,7 @@ namespace Finance_manager
             {
                 try
                 {
-                    User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).First();
+                    User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault();
                     if (BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
                     {
                         Hide();

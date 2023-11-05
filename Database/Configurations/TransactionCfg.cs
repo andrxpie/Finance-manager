@@ -26,6 +26,8 @@ namespace Finance_manager
                     .WithMany(x => x.Transactions)
                     .HasForeignKey(x => x.UserId);
 
+            builder.Property(x => x.DateTime).HasDefaultValue(DateTime.Now);
+
             builder.HasData(new Transaction[]
             {
                 new Transaction() { Id = 1, IsCrediting = true, CategoryId = 1, DateTime = DateTime.Now, Sum = 5000, UserId = 1 },
