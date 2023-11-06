@@ -24,9 +24,10 @@ namespace Finance_manager
 {
     public partial class MainWindow : Window
     {
-        ViewModel.ViewModel vm = new();
+        private ViewModel.ViewModel vm = new();
         private string login;
         public string SelectegCateg { get; set; }
+        private IUoW uoW = new UnitOfWork();
 
         public MainWindow()
         {
@@ -37,21 +38,14 @@ namespace Finance_manager
             }
             this.DataContext = vm;
         }
-        private IUoW uoW = new UnitOfWork();
-        private ViewModel.ViewModel vm = new();
         
        
         public MainWindow(User user)
         {
-
             InitializeComponent();
             vm.CurrUser = user;
 
-
             List<Transaction> list = uoW.TransactionRepo.Get(x => x.User.Login == vm.CurrUser.Login, includeProperties: "Category").ToList();
-
-            
-
 
             Dictionary<string, int> categorysumpair = new Dictionary<string, int>();
 
@@ -59,7 +53,6 @@ namespace Finance_manager
             {
                 categorysumpair.Add(i.Name, list.Where(x => x.Category.Name == i.Name).Sum(x => x.Sum));
             }
-
 
             #region Test
             if (vm.CurrUser.Transactions != null)
