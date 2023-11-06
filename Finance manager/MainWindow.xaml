@@ -9,53 +9,76 @@
         xmlns:viewmodel="clr-namespace:Finance_manager.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="570" Width="340">
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <LinearGradientBrush.GradientStops>
+                <GradientStop Color="#d4bbfc" Offset="0.0"/>
+                <GradientStop Color="White" Offset="1.0"/>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
+
         <StackPanel>
             <DockPanel LastChildFill="False" Height="50">
                 <materialDesign:Chip
                     Content="{Binding CurrUser.Login}"
                     Style="{StaticResource MaterialDesignOutlineChip}">
-                    
+
                     <materialDesign:Chip.Icon>
                         <Image Source="{Binding CurrUser.AvatarPicture}" Stretch="UniformToFill"/>
                     </materialDesign:Chip.Icon>
                 </materialDesign:Chip>
+                <Grid HorizontalAlignment="Right"
+                 Width="80">
+                    <Button
+                        Click="ToOpenHistory_Click"
+                        Height="40"
+                        
+                        materialDesign:ButtonAssist.CornerRadius="25"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        FontWeight="Regular"
+                        ToolTip="MaterialDesignRaisedDarkButton with Round Corners">
+                        
+                        <TextBlock VerticalAlignment="Center" FontWeight="DemiBold"
+                        Text="History" />
+                    </Button>
+                </Grid>
             </DockPanel>
 
-            <Button Click="ToOpenHistory_Click">History</Button>
-        
-        <!--#region Categories -->
-        <StackPanel>
-            <Button Content="Check Categories" Click="CategoryBtn_Click"/>
-            <TextBox IsReadOnly="True" Background="Wheat" Name="choicedTxtBox" Height="40" Text="{Binding SelectedText}" TextAlignment="Center" FontSize="20" FontWeight="Bold"/>
-        </StackPanel>
-        <!--#endregion-->
-        
-        <lvc:PieChart x:Name="myPieChart" DataTooltip="{x:Null}" StartingRotationAngle="0" Height="200" Margin="40" InnerRadius="50" LegendLocation="None" Hoverable="True" BorderThickness="1" />
-
-            <Border Height="30" DockPanel.Dock="Right" Background="MediumPurple" Width="200">
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Balance : " FontSize="18" FontWeight="DemiBold"/>
-                <Label Name="BalanceValue" Content="{Binding CurrUser.Balance}" FontSize="18" FontWeight="DemiBold"/>
+            <!--#region Categories -->
+            <StackPanel>
+                <Button Background="#a06cd5" Content="Check Categories" VerticalAlignment="Center"  FontSize="17" Click="CategoryBtn_Click"/>
+                <TextBox IsReadOnly="True" Background="White" Name="choicedTxtBox" Height="40" Text="{Binding SelectedText}" TextAlignment="Center" FontSize="20" />
             </StackPanel>
-        </Border>
-        <DockPanel LastChildFill="False" Height="75">
-            <Button Name="AddIncomeClick" Click="AddIncomeClick_Click"
-                Background="Green" BorderBrush="Green"
-                Style="{StaticResource MaterialDesignFloatingActionButton}"
-                ToolTip="MaterialDesignFloatingActionDarkButton" FontSize="20" Height="50" Width="50" FontWeight="ExtraBold" Margin="50, 0, 0, 0" DockPanel.Dock="Left">
-                <materialDesign:PackIcon Kind="PlusThick" />
-            </Button>
-            <Button Name="AddSpendsClick" Click="AddSpendsClick_Click"
-                Background="Red" BorderBrush="Red"
-                Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
-                ToolTip="MaterialDesignFloatingActionDarkButton" FontSize="20" Margin="0, 0, 50, 0" Height="50" Width="50" FontWeight="ExtraBold" DockPanel.Dock="Right">
-                <materialDesign:PackIcon Kind="MinusThick"/>
-            </Button>
+            <!--#endregion-->
 
-        </DockPanel>
-        
-    </StackPanel>
+            <lvc:PieChart x:Name="myPieChart" DataTooltip="{x:Null}" StartingRotationAngle="0" Height="200" Margin="40" InnerRadius="50" LegendLocation="None" Hoverable="True" BorderThickness="1" />
+
+            <Border CornerRadius="10" Height="40" DockPanel.Dock="Right" Background="#a06cd5" Width="200">
+                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                    <Label Content="Balance : " FontSize="18" Foreground="White"  Margin="5, 0"/>
+                    <Label Name="BalanceValue" Content="{Binding CurrUser.Balance}" FontSize="18"/>
+                </StackPanel>
+            </Border>
+            <DockPanel LastChildFill="False" Height="75">
+                <Button Name="AddIncomeClick" Click="AddIncomeClick_Click"
+                Background="#35e95f" BorderBrush="#35e95f"
+                Style="{StaticResource MaterialDesignFloatingActionButton}"
+                ToolTip="MaterialDesignFloatingActionDarkButton" FontSize="200" Height="60" Width="60" Margin="50, 10, 0, 0" DockPanel.Dock="Left">
+                    <materialDesign:PackIcon Kind="PlusThick" />
+                </Button>
+                <Button Name="AddSpendsClick" Click="AddSpendsClick_Click"
+                Background="#f72634" BorderBrush="#f72634"
+                Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                ToolTip="MaterialDesignFloatingActionDarkButton" FontSize="20" Margin="0, 10, 50, 0" Height="60" Width="60" DockPanel.Dock="Right">
+                    <materialDesign:PackIcon Kind="MinusThick"/>
+                </Button>
+
+            </DockPanel>
+        </StackPanel>
         <Frame Name="NavigateToAddPage" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
+

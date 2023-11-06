@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Finance_manager.Migrations
+namespace Data_access.Migrations
 {
     [DbContext(typeof(FinanceManagerDbContext))]
-    [Migration("20231103163817_point_DataSeed#1")]
-    partial class point_DataSeed1
+    [Migration("20231103183209_Innitial")]
+    partial class Innitial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -170,7 +170,7 @@ namespace Finance_manager.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            DateTime = new DateTime(2023, 11, 3, 18, 38, 17, 655, DateTimeKind.Local).AddTicks(3652),
+                            DateTime = new DateTime(2023, 11, 3, 20, 32, 9, 646, DateTimeKind.Local).AddTicks(3901),
                             IsCrediting = true,
                             Sum = 5000,
                             UserId = 1
@@ -179,7 +179,7 @@ namespace Finance_manager.Migrations
                         {
                             Id = 2,
                             CategoryId = 5,
-                            DateTime = new DateTime(2023, 11, 3, 18, 38, 17, 655, DateTimeKind.Local).AddTicks(3656),
+                            DateTime = new DateTime(2023, 11, 3, 20, 32, 9, 646, DateTimeKind.Local).AddTicks(3905),
                             IsCrediting = false,
                             Sum = 15000,
                             UserId = 2

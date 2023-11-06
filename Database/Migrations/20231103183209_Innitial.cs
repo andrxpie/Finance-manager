@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace Finance_manager.Migrations
+namespace Data_access.Migrations
 {
     /// <inheritdoc />
-    public partial class @base : Migration
+    public partial class Innitial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,11 +35,36 @@ namespace Finance_manager.Migrations
                     Login = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Balance = table.Column<double>(type: "float", nullable: false)
+                    Balance = table.Column<double>(type: "float", nullable: false),
+                    AvatarPicture = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CategoryUser",
+                columns: table => new
+                {
+                    CategoriesId = table.Column<int>(type: "int", nullable: false),
+                    UsersId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CategoryUser", x => new { x.CategoriesId, x.UsersId });
+                    table.ForeignKey(
+                        name: "FK_CategoryUser_Categories_CategoriesId",
+                        column: x => x.CategoriesId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CategoryUser_Users_UsersId",
+                        column: x => x.UsersId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -93,6 +118,29 @@ namespace Finance_manager.Migrations
                     { 15, "Pets" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "AvatarPicture", "Balance", "Email", "Login", "Password" },
+                values: new object[,]
+                {
+                    { 1, "media\\avatars\\default.jpg", 15000.0, "admin@finance.manager", "amdin", "$2a$11$SE5dN37YdLiwcmWIgRwfpOxuvhMjD8xlBW08z9J58WaaLFzFgb6yW" },
+                    { 2, "media\\avatars\\default.jpg", 15000.0, "admin@finance.manager", "123", "$2a$11$xaLu5fQiWJ3feYZ40ndy3O1YI9pnG5G6g8lgxfvL8iFmF27hVlIyy" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Transactions",
+                columns: new[] { "Id", "CategoryId", "DateTime", "IsCrediting", "Sum", "UserId" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(2023, 11, 3, 20, 32, 9, 646, DateTimeKind.Local).AddTicks(3901), true, 5000, 1 },
+                    { 2, 5, new DateTime(2023, 11, 3, 20, 32, 9, 646, DateTimeKind.Local).AddTicks(3905), false, 15000, 2 }
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CategoryUser_UsersId",
+                table: "CategoryUser",
+                column: "UsersId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Transactions_CategoryId",
                 table: "Transactions",
@@ -107,6 +155,9 @@ namespace Finance_manager.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "CategoryUser");
+
             migrationBuilder.DropTable(
                 name: "Transactions");
 
