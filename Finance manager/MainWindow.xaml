@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Finance_manager"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:viewmodel="clr-namespace:Finance_manager.ViewModel"
+        xmlns:viewmodel="clr-namespace:Finance_manager.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="570" Width="340">
     <Grid>
@@ -14,13 +14,16 @@
             <DockPanel LastChildFill="False" Height="50">
                 <materialDesign:Chip
                     Content="{Binding CurrUser.Login}"
-                    Style="{StaticResource MaterialDesignOutlineChip}">
+                    Style="{StaticResource MaterialDesignOutlineChip}"
+                    Click="Chip_Click">
                     
                     <materialDesign:Chip.Icon>
-                        <Image Source="{Binding CurrUser.AvatarPicture}" Stretch="UniformToFill"/>
+                        <Image Name ="Image" Stretch="UniformToFill"/>
                     </materialDesign:Chip.Icon>
                 </materialDesign:Chip>
             </DockPanel>
+
+            <Button Click="ToOpenHistory_Click">History</Button>
         
         <!--#region Categories -->
         <StackPanel>
@@ -29,9 +32,9 @@
         </StackPanel>
         <!--#endregion-->
         
-        <lvc:PieChart x:Name="myPieChart" DataTooltip="{x:Null}" StartingRotationAngle="0" Height="200" Margin="40" InnerRadius="50" LegendLocation="None" Hoverable="True" BorderThickness="1" />
-       
-        <Border Height="30" DockPanel.Dock="Right" Background="MediumPurple" Width="200">
+        <lvc:PieChart x:Name="myPieChart" DataTooltip="{x:Null}" StartingRotationAngle="0" Height="200" Margin="40" InnerRadius="25" LegendLocation="Bottom" Hoverable="True" BorderThickness="1" />
+
+            <Border Height="30" DockPanel.Dock="Right" Background="MediumPurple" Width="200">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Balance : " FontSize="18" FontWeight="DemiBold"/>
                 <Label Name="BalanceValue" Content="{Binding CurrUser.Balance}" FontSize="18" FontWeight="DemiBold"/>
@@ -54,6 +57,6 @@
         </DockPanel>
         
     </StackPanel>
-        <Frame Name="NavigateToAddPage" NavigationUIVisibility="Hidden"/>
+        <Frame Name="Navigator" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

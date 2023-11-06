@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Finance_manager.Migrations
+namespace Data_access.Migrations
 {
     [DbContext(typeof(FinanceManagerDbContext))]
     partial class FinanceManagerDbContextModelSnapshot : ModelSnapshot
@@ -161,6 +161,26 @@ namespace Finance_manager.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Transactions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            DateTime = new DateTime(2023, 11, 3, 20, 14, 24, 265, DateTimeKind.Local).AddTicks(9967),
+                            IsCrediting = true,
+                            Sum = 5000,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 5,
+                            DateTime = new DateTime(2023, 11, 3, 20, 14, 24, 265, DateTimeKind.Local).AddTicks(9970),
+                            IsCrediting = false,
+                            Sum = 15000,
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("Finance_manager.User", b =>
@@ -193,6 +213,26 @@ namespace Finance_manager.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AvatarPicture = "media\\avatars\\default.jpg",
+                            Balance = 15000.0,
+                            Email = "admin@finance.manager",
+                            Login = "amdin",
+                            Password = "$2a$11$SE5dN37YdLiwcmWIgRwfpOxuvhMjD8xlBW08z9J58WaaLFzFgb6yW"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AvatarPicture = "media\\avatars\\default.jpg",
+                            Balance = 15000.0,
+                            Email = "admin@finance.manager",
+                            Login = "123",
+                            Password = "$2a$11$xaLu5fQiWJ3feYZ40ndy3O1YI9pnG5G6g8lgxfvL8iFmF27hVlIyy"
+                        });
                 });
 
             modelBuilder.Entity("CategoryUser", b =>

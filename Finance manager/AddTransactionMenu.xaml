@@ -21,13 +21,13 @@
             <Label Content="New income" Name="Title" DockPanel.Dock="Bottom" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-50, 0, 0, 0" FontWeight="Black"/>
         </DockPanel>
         <DatePicker Name="datePicker" IsDropDownOpen="False" SelectedDateFormat="Short"/>
-        <ComboBox Name="CategoriesList" Text="Select a category..."/>
+        <ComboBox Name="CategoriesList"/>
         <Border Background="MediumPurple" Margin="10, 60, 10, 10">
             <DockPanel Height="25" LastChildFill="False">
                 <Label>
                     <materialDesign:PackIcon Kind="Cash"/>
                 </Label>
-                <TextBox Name="ValueToEnter" Width="220">
+                <TextBox Name="ValueToEnter" Width="220" BorderThickness="0" IsEnabled="False">
                 </TextBox>
                 <Button DockPanel.Dock="Right" x:Name="CancelBtn" Click="CancelBtn_Click">
                     <materialDesign:PackIcon Kind="CloseCircle" Margin="-6, -12"/>
@@ -35,8 +35,7 @@
             </DockPanel>
         </Border>
 
-
-        <UniformGrid Columns="3" Rows="3" Margin="2">
+        <UniformGrid Columns="3" Rows="4" Margin="2">
             <Button Height="50" Margin="3" Click="Button_Click">1</Button>
             <Button Height="50" Margin="3" Click="Button_Click">2</Button>
             <Button Height="50" Margin="3" Click="Button_Click">3</Button>
@@ -46,8 +45,17 @@
             <Button Height="50" Margin="3" Click="Button_Click">7</Button>
             <Button Height="50" Margin="3" Click="Button_Click">8</Button>
             <Button Height="50" Margin="3" Click="Button_Click">9</Button>
+            <Label Height="50" Visibility="Hidden">0</Label>
+            <Button Height="50" Click="Button_Click">0</Button>
+            <Label Height="50" Visibility="Hidden">0</Label>
         </UniformGrid>
-        <Button Height="50" Name="AcceptBtn" Margin="10" Click="AcceptBtn_Click">Accept</Button>
+        <Button Height="50" 
+                Name="AcceptBtn" 
+                Margin="10" 
+                Click="AcceptBtn_Click" 
+                materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:0.5">
+            Accept
+        </Button>
     </StackPanel>
     
 </Page>

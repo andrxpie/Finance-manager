@@ -20,6 +20,8 @@ namespace Finance_manager
             builder.Property(x => x.Email).IsRequired();
     
             builder.HasMany(x => x.Categories).WithMany(x => x.Users);
+
+            
         }
     }
 }

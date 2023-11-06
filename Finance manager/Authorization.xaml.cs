@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
+using Finance_manager.ViewModel;
 
 namespace Finance_manager
 {
@@ -19,10 +20,13 @@ namespace Finance_manager
     {
         UnitOfWork uow = new();
 
+        ViewModel.ViewModel vm = new();
+
         public Authorization()
         {
             InitializeComponent();
         }
+
 
         private void CreateAccBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -37,6 +41,8 @@ namespace Finance_manager
         private void LogInBtn_Click(object sender, RoutedEventArgs e)
         {
             Validation();
+
+            vm.MyPassword = passTxtBox.Text;
         }
 
         private void Validation()
@@ -45,19 +51,18 @@ namespace Finance_manager
             {
                 try
                 {
-                    User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).First();
+                    User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault();
                     if (BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
                     {
                         Hide();
 
                         MainWindow mw = new MainWindow(user);
                         mw.ShowDialog();
-
                         ShowDialog();
                     }
                     else
                     {
-                        MessageBox.Show("Incorrect login or password.");
+                        MessageBox.Show("123");
                     }
 
                     loginTxtBox.Text = string.Empty;
@@ -67,9 +72,9 @@ namespace Finance_manager
                 }
                 catch
                 {
-                    MessageBox.Show("Incorrect login or password.");
+                    MessageBox.Show("incorrect login or password.");
                 }
-            }
+        }
             else
             {
                 MessageBox.Show("Login && password is empty.");

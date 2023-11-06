@@ -34,10 +34,14 @@
         </Grid.ColumnDefinitions>
         <!--#endregion-->
 
-        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Content="Categories" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontStyle="Italic" FontWeight="DemiBold"/>
+        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Content="Categories" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="SemiBold"/>
         
-        <Button Grid.ColumnSpan="2" Margin="10" Content="Add" Click="AddCategoryBtn_Click" Background="Green"/>
-        <Button Grid.Column="3" Grid.ColumnSpan="2" Content="Close" Margin="10" Click="ExitBtn_Click" Background="DarkRed"/>
+        <DockPanel LastChildFill="False" Grid.ColumnSpan="5">
+        <Button Content="Add" Margin="20" Click="AddCategoryBtn_Click" DockPanel.Dock="Left" Background="Green"/>
+        <Button Content="Close" Margin="10" Click="ExitBtn_Click"  Background="DarkRed"/>
+        <Button x:Name="DeleteBtn" Margin="20" Content="Delete" DockPanel.Dock="Right"/>
+        </DockPanel>
+        
 
         <ListBox Name="categLB" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="4" Background="White" ItemsSource="{Binding Categories}" Width="180" SelectionChanged="CategoryListBox_SelectionChanged" Margin="10">
             <ListBox.ItemTemplate>

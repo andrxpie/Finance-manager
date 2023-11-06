@@ -14,7 +14,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Finance_manager.Migrations;
 
 namespace Finance_manager
 {
@@ -39,9 +38,7 @@ namespace Finance_manager
 
         private void BackToMainMenu_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow(currentUser);
-            this.Close();
-            mainWindow.Show();
+            Close();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Data_access.Repositories;
-using Finance_manager.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,36 +40,37 @@ namespace Finance_manager
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(ValueToEnter.Text.Length != 0)
-            ValueToEnter.Text = ValueToEnter.Text.Substring(0, ValueToEnter.Text.Length - 1);
+            ValueToEnter.Text = "";
         }
 
         private void AcceptBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (isCreditingtransaction == true)
+            if (CheckValues() == true)
             {
-                Uow.TransactionRepo.Insert(new Transaction()
+                Transaction transaction = new Transaction()
                 {
                     Sum = Convert.ToInt32(ValueToEnter.Text),
                     UserId = currUser.Id,
                     DateTime = new DateTime(datePicker.SelectedDate.Value.Year, datePicker.SelectedDate.Value.Month, datePicker.SelectedDate.Value.Day),
-                    IsCrediting = true,
                     CategoryId = categories.Where(x => x.Name == ((Category)CategoriesList.SelectedItem).Name).Select(x => x.Id).FirstOrDefault()
-                });
-                Uow.Save();
-            }
-            else
-            {
-                Uow.TransactionRepo.Insert(new Transaction()
-                {
-                    Sum = Convert.ToInt32(ValueToEnter.Text),
-                    UserId = currUser.Id,
-                    DateTime = new DateTime(datePicker.SelectedDate.Value.Year, datePicker.SelectedDate.Value.Month, datePicker.SelectedDate.Value.Day),
-                    IsCrediting = false,
-                    CategoryId = categories.Where(x => x.Name == ((Category)CategoriesList.SelectedItem).Name).Select(x => x.Id).First()
-                });
+                };
+
+                if (isCreditingtransaction == true)
+                    transaction.IsCrediting = true;
+
+                else transaction.IsCrediting = false;
+
+                Uow.TransactionRepo.Insert(transaction);
                 Uow.Save();
             }
         }
+
+        private bool CheckValues()
+        {
+            if (datePicker.SelectedDate.Value > DateTime.Now
+               && CategoriesList.SelectedItem == null)
+            { return false; } return true; 
+        }
+
     }
 }

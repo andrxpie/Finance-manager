@@ -12,10 +12,11 @@ namespace Finance_manager
         public int Id { get; set; }
         public int Sum { get; set; }
         public bool IsCrediting { get; set; }
-        public DateTime DateTime { get; set; } = DateTime.Now;
+        public DateTime DateTime { get; set; } 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
     }
+
 }

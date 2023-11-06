@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,7 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Shell;
+using Data_access.Repositories;
 using LiveCharts;
+using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 
 namespace Finance_manager
@@ -32,31 +37,56 @@ namespace Finance_manager
             }
             this.DataContext = vm;
         }
+        private IUoW uoW = new UnitOfWork();
+        private ViewModel.ViewModel vm = new();
+        
+       
         public MainWindow(User user)
         {
-            InitializeComponent();
 
+            InitializeComponent();
             vm.CurrUser = user;
 
-            #region Test
-            myPieChart.Series.Add(new PieSeries { Title = "1", Fill = Brushes.Red, StrokeThickness = 5, Values = new ChartValues<double> { 10.0 } });
-            myPieChart.Series.Add(new PieSeries { Title = "2", Fill = Brushes.AliceBlue, StrokeThickness = 5, Values = new ChartValues<double> { 10.0 } });
-            myPieChart.Series.Add(new PieSeries { Title = "2", Fill = Brushes.Black, StrokeThickness = 5, Values = new ChartValues<double> { 10.0 } });
-            myPieChart.Series.Add(new PieSeries { Title = "3", Fill = Brushes.Yellow, StrokeThickness = 5, Values = new ChartValues<double> { 10.0 } });
-            myPieChart.Series.Add(new PieSeries { Title = "4", Fill = Brushes.Tomato, StrokeThickness = 5, Values = new ChartValues<double> { 10.0 } });
-            myPieChart.Series.Add(new PieSeries { Title = "5", Fill = Brushes.Purple, StrokeThickness = 5, Values = new ChartValues<double> { 25.0 } });
-            myPieChart.Series.Add(new PieSeries { Title = "6", Fill = Brushes.Orange, StrokeThickness = 5, Values = new ChartValues<double> { 25.0 } });
 
+            List<Transaction> list = uoW.TransactionRepo.Get(x => x.User.Login == vm.CurrUser.Login, includeProperties: "Category").ToList();
+
+            
+
+
+            Dictionary<string, int> categorysumpair = new Dictionary<string, int>();
+
+            foreach(var i in uoW.CategoryRepo.Get().Where(x => x.Transactions != null).ToList())
+            {
+                categorysumpair.Add(i.Name, list.Where(x => x.Category.Name == i.Name).Sum(x => x.Sum));
+            }
+
+
+            #region Test
+            if (vm.CurrUser.Transactions != null)
+            {
+                foreach (var i in categorysumpair)
+                {
+                    myPieChart.Series.Add(new PieSeries
+                    {
+                        Title = i.Key + " - " + i.Value,
+                        Fill = vm.colors[new Random().Next(0, vm.colors.Length)],
+                        Values = new ChartValues<ObservableValue> { new ObservableValue(i.Value) },
+                        StrokeThickness = 5
+                    });
+                }
+            }
             #endregion
 
-            DataContext = vm;
+            Image.Source = new BitmapImage(new Uri($"{vm.CurrUser.AvatarPicture}", UriKind.Absolute));
+
+            this.DataContext = vm;
         }
 
         private void AddIncomeClick_Click(object sender, RoutedEventArgs e)
         {
             AddTransactionMenu menu = new(vm.CurrUser);
             menu.Title.Content = "New income";
-            NavigateToAddPage.NavigationService.Navigate(menu);
+            Navigator.NavigationService.Navigate(menu);
         }
 
         private void AddSpendsClick_Click(object sender, RoutedEventArgs e)
@@ -64,7 +94,7 @@ namespace Finance_manager
             AddTransactionMenu menu = new(vm.CurrUser);
             menu.Title.Content = "New spend";
             menu.isCreditingtransaction = false;
-            NavigateToAddPage.NavigationService.Navigate(menu);
+            Navigator.NavigationService.Navigate(menu);
         }
 
         private void CategoryBtn_Click(object sender, RoutedEventArgs e)
@@ -78,10 +108,19 @@ namespace Finance_manager
 
         private void ToOpenHistory_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Hide();
 
             HistoryOfTransactions historyOfTransactions = new HistoryOfTransactions(vm.CurrUser);
             historyOfTransactions.ShowDialog();
+
+            ShowDialog();
+        }
+
+        private void Chip_Click(object sender, RoutedEventArgs e)
+        {
+            ViewProfile vp = new ViewProfile(vm.CurrUser);
+            Navigator.NavigationService.Navigate(vp);
+
         }
     }
 }
