@@ -26,6 +26,7 @@ namespace Finance_manager
     {
         private ViewModel.ViewModel vm = new();
         private string login;
+        private IUoW uoW = new UnitOfWork();
         public string SelectegCateg { get; set; }
         private IUoW uoW = new UnitOfWork();
 
@@ -43,6 +44,7 @@ namespace Finance_manager
         public MainWindow(User user)
         {
             InitializeComponent();
+
             vm.CurrUser = user;
 
             List<Transaction> list = uoW.TransactionRepo.Get(x => x.User.Login == vm.CurrUser.Login, includeProperties: "Category").ToList();
@@ -70,7 +72,7 @@ namespace Finance_manager
             }
             #endregion
 
-            Image.Source = new BitmapImage(new Uri($"{vm.CurrUser.AvatarPicture}", UriKind.Absolute));
+            //Image.Source = new BitmapImage(new Uri($"{vm.CurrUser.AvatarPicture}", UriKind.Absolute));
 
             this.DataContext = vm;
         }
@@ -80,6 +82,7 @@ namespace Finance_manager
             AddTransactionMenu menu = new(vm.CurrUser);
             menu.Title.Content = "New income";
             Navigator.NavigationService.Navigate(menu);
+            
         }
 
         private void AddSpendsClick_Click(object sender, RoutedEventArgs e)
@@ -89,7 +92,7 @@ namespace Finance_manager
             menu.isCreditingtransaction = false;
             Navigator.NavigationService.Navigate(menu);
         }
-
+        
         private void CategoryBtn_Click(object sender, RoutedEventArgs e)
         {
             CategoryWindow categoryWindow = new CategoryWindow();

@@ -18,6 +18,7 @@ namespace Finance_manager
 {
     public partial class AddTransactionMenu : Page
     {
+        private ViewModel.ViewModel vm = new();
         private static User currUser = new();
         private static UnitOfWork Uow = new UnitOfWork();
         public bool isCreditingtransaction = true;
@@ -54,15 +55,29 @@ namespace Finance_manager
                     DateTime = new DateTime(datePicker.SelectedDate.Value.Year, datePicker.SelectedDate.Value.Month, datePicker.SelectedDate.Value.Day),
                     CategoryId = categories.Where(x => x.Name == ((Category)CategoriesList.SelectedItem).Name).Select(x => x.Id).FirstOrDefault()
                 };
-
+                BalanceUpdateAsync(currUser, Convert.ToInt32(ValueToEnter.Text));
+                
                 if (isCreditingtransaction == true)
                     transaction.IsCrediting = true;
 
                 else transaction.IsCrediting = false;
-
                 Uow.TransactionRepo.Insert(transaction);
+
                 Uow.Save();
             }
+        }
+        private async Task BalanceUpdateAsync(User user, int amount)
+        {
+            try
+            {
+                currUser.Balance += amount;
+                vm.CurrUser = user;
+            }
+            catch
+            {
+                MessageBox.Show("Invalid value");
+            }
+            
         }
 
         private bool CheckValues()

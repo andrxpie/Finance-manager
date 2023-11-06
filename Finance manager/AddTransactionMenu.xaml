@@ -27,7 +27,7 @@
                 <Label>
                     <materialDesign:PackIcon Kind="Cash"/>
                 </Label>
-                <TextBox Name="ValueToEnter" Width="220" BorderThickness="0" IsEnabled="False">
+                <TextBox Name="ValueToEnter" Width="261" BorderThickness="0" IsEnabled="False" IsReadOnly="True">
                 </TextBox>
                 <Button DockPanel.Dock="Right" x:Name="CancelBtn" Click="CancelBtn_Click">
                     <materialDesign:PackIcon Kind="CloseCircle" Margin="-6, -12"/>

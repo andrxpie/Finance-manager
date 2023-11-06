@@ -49,32 +49,32 @@ namespace Finance_manager
         {
             if (loginTxtBox.Text != string.Empty && passTxtBox.Text != string.Empty)
             {
-                try
+                //try
+                //{
+                User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault();
+                if (BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
                 {
-                    User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault();
-                    if (BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
-                    {
-                        Hide();
-
-                        MainWindow mw = new MainWindow(user);
-                        mw.ShowDialog();
-                        ShowDialog();
-                    }
-                    else
-                    {
-                        MessageBox.Show("123");
-                    }
-
-                    loginTxtBox.Text = string.Empty;
-                    passTxtBox.Text = string.Empty;
-
                     Hide();
+
+                    MainWindow mw = new MainWindow(user);
+                    mw.ShowDialog();
+                    ShowDialog();
                 }
-                catch
+                else
                 {
-                    MessageBox.Show("incorrect login or password.");
+                    MessageBox.Show("123");
                 }
-        }
+
+                loginTxtBox.Text = string.Empty;
+                passTxtBox.Text = string.Empty;
+
+                Hide();
+                //}
+                //catch
+                //{
+                //    MessageBox.Show("incorrect login or password.");
+                //}
+            }
             else
             {
                 MessageBox.Show("Login && password is empty.");

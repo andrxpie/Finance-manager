@@ -18,7 +18,7 @@ namespace Finance_manager.ViewModel
         private string selectedText;
         private IUoW uoW = new UnitOfWork();
         private ObservableCollection<Category> categories;
-        public User CurrUser { get; set; }
+        private User currUser { get; set; }
         public BitmapImage ImageSource { get; set; }
         public string MyPassword { get; set; }
 
@@ -53,6 +53,12 @@ namespace Finance_manager.ViewModel
             }
         }
 
+        public User CurrUser
+        {
+            get { return currUser; }
+            set { currUser = value; OnPropertyChanged(nameof(currUser)); }
+        }
+
         public ObservableCollection<Category> Categories
         {
             get { return categories; }
@@ -69,7 +75,6 @@ namespace Finance_manager.ViewModel
             Categories = new ObservableCollection<Category>();
             ShowCategories();
         }
-
 
         private void ShowCategories()
         {
