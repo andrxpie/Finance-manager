@@ -49,13 +49,26 @@ namespace Finance_manager
             {
                 TmpPath = Path.GetFullPath(dialog.FileName);
                 Image.Source = new BitmapImage(new Uri($"{TmpPath}", UriKind.Absolute));
+                if(TmpPath != null) vm.CurrUser.AvatarPicture = TmpPath;
             }
         }
 
         private void AcceptBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(BCrypt.Net.BCrypt.Verify(PasswordToEdit.Text, vm.CurrUser.Password))
+            if(NewPassword.Text != ""
+               && NewPassword.Text.Length > 7)  
+            { 
+                if (BCrypt.Net.BCrypt.Verify(PasswordToEdit.Text, vm.CurrUser.Password))
+                {
+                    vm.CurrUser.Password = NewPassword.Text;
+                    vm.CurrUser.Login = LoginToEdit.Text;
+                    uow.UserRepo.Update(vm.CurrUser);
+                    uow.Save();
+                }
+                else MessageBox.Show("Wrong Password");
 
+            }
+                else MessageBox.Show("Length of password must be longer");
         }
 
         private void CancelBtn2_Click(object sender, RoutedEventArgs e)
