@@ -46,7 +46,7 @@ namespace Finance_manager
 
             vm.CurrUser = user;
 
-            Refresh();
+            initializediagram();
 
             Image.Source = new BitmapImage(new Uri($"{vm.CurrUser.AvatarPicture}", UriKind.Absolute));
 
@@ -103,21 +103,19 @@ namespace Finance_manager
                     Random random = new Random();
                     int a = random.Next(0, vm.colors.Length);
 
-                    if (UsedIndexes.Contains(a))
-                        while (UsedIndexes.Contains(a))
-                            a = random.Next(0, vm.colors.Length);
-                    else
+                    while (UsedIndexes.Contains(a))
+                        a = random.Next(0, vm.colors.Length);
+
+                    myPieChart.Series.Add(new PieSeries
                     {
-                        myPieChart.Series.Add(new PieSeries
-                        {
-                            Title = i.Key + " - " + i.Value,
-                            Fill = vm.colors[a],
-                            Values = new ChartValues<ObservableValue> { new ObservableValue(i.Value) },
-                            StrokeThickness = 5
-                        });
+                        Title = i.Key + " - " + i.Value,
+                        Fill = vm.colors[a],
+                        Values = new ChartValues<ObservableValue> { new ObservableValue(i.Value) },
+                        StrokeThickness = 5
+                    });
 
                         UsedIndexes.Add(a);
-                    }
+                    
                 }
             }
         }
@@ -139,9 +137,8 @@ namespace Finance_manager
 
         }
 
-        private void Refresh()
+        private void initializediagram()
         {
-
             List<Transaction> list = uoW.TransactionRepo.Get(x => x.User.Login == vm.CurrUser.Login, includeProperties: "Category").ToList();
 
             Dictionary<string, int> categorysumpair = new Dictionary<string, int>();

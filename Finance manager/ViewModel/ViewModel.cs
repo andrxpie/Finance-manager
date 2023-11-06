@@ -25,7 +25,6 @@ namespace Finance_manager.ViewModel
 
         public SolidColorBrush[] colors = 
         {
-            Brushes.AliceBlue,
             Brushes.Green,
             Brushes.Orange,
             Brushes.Orchid,
@@ -37,10 +36,11 @@ namespace Finance_manager.ViewModel
             Brushes.Aqua, 
             Brushes.Aquamarine,
             Brushes.BlueViolet,
-            Brushes.Magenta,
-            Brushes.LightYellow,
+            Brushes.Blue,
             Brushes.Crimson,
             Brushes.Fuchsia,
+            Brushes.DarkRed,
+            Brushes.DarkSalmon,
         };
         public string SelectedText
         {
