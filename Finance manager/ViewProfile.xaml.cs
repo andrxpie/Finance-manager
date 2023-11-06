@@ -1,4 +1,5 @@
-﻿using Data_access.Repositories;
+﻿using BCrypt.Net;
+using Data_access.Repositories;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using System;
@@ -53,11 +54,7 @@ namespace Finance_manager
 
         private void AcceptBtn_Click(object sender, RoutedEventArgs e)
         {
-            vm.CurrUser.AvatarPicture = TmpPath;
-            vm.CurrUser.Login = LoginToEdit.Text;
-            vm.CurrUser.Password = BCrypt.Net.BCrypt.HashPassword(LoginToEdit.Text);
-
-            uow.UserRepo.Update(vm.CurrUser);
+            if(BCrypt.Net.BCrypt.Verify(PasswordToEdit.Text, vm.CurrUser.Password))
 
         }
 
@@ -70,10 +67,15 @@ namespace Finance_manager
         {
             LoginToEdit.Text = "";
         }
+        private void CancelBtn3_Click(object sender, RoutedEventArgs e)
+        {
+            NewPassword.Text = "";
+        }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(null);
         }
+
     }
 }

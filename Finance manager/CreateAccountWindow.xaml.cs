@@ -36,7 +36,11 @@ namespace Finance_manager
         {
             try
             {
-                if (passTxtBox.Text == passSecTxtBox.Text && loginTxtBox.Text != string.Empty && policyCheckBox.IsChecked == true)
+                if (passTxtBox.Text.Length > 7
+                    &&
+                    && passTxtBox.Text == passSecTxtBox.Text 
+                    && loginTxtBox.Text != string.Empty 
+                    && policyCheckBox.IsChecked == true)
                 {
                     User user = new User();
 

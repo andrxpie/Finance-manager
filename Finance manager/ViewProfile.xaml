@@ -8,7 +8,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:viewmodel="clr-namespace:Finance_manager.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ViewModel}"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="340"
+      d:MaxHeight="570" d:MaxWidth="340"
       Title="ViewProfile" Background="White">
     <StackPanel>
         
@@ -26,7 +26,7 @@
         
         </DockPanel>
 
-        <Image Name="Image" Source="{Binding CurrUser.AvatarPicture}"  Height="150" Width="150" Margin="10" Stretch="UniformToFill"/>
+        <Image Name="Image" Source="{Binding CurrUser.AvatarPicture}"  Height="110" Width="110" Margin="10" Stretch="UniformToFill"/>
 
         <Button
             Name="EditAvatarBtn"
@@ -37,36 +37,60 @@
         </Button>
         
         
-        <Border Background="MediumPurple" Margin="10, 40" Height="40">
-            <DockPanel Height="40" LastChildFill="False">
-                <Label FontSize="20" FontWeight="DemiBold">
+        <Border Margin="10, 10" Height="70">
+            <StackPanel Height="70">
+
+                <Label FontSize="20" FontWeight="DemiBold" HorizontalAlignment="Center">
                     Login
                 </Label>
-                <Button DockPanel.Dock="Right" x:Name="CancelBtn" Click="CancelBtn_Click">
-                    <materialDesign:PackIcon Kind="CloseCircle" Margin="-6, -6"/>
-                </Button>
-                <TextBox Name="LoginToEdit" Width="190" DockPanel.Dock="Right" Text="{Binding CurrUser.Login}" FontSize="20"  BorderThickness="0">
-                </TextBox>
-            </DockPanel>
+
+                <DockPanel Background="MediumPurple" LastChildFill="True">
+                    <Button DockPanel.Dock="Right" x:Name="CancelBtn" Click="CancelBtn2_Click">
+                        <materialDesign:PackIcon Kind="CloseCircle" Margin="-6, -6"/>
+                    </Button>
+                    <TextBox Name="LoginToEdit" FontSize="20" Text="{Binding CurrUser.Login}" BorderThickness="0">
+                    </TextBox>
+                </DockPanel>
+            </StackPanel>
         </Border>
 
-        <Border Background="MediumPurple" Margin="10, 40" Height="40">
-            <DockPanel Height="40" LastChildFill="False">
-                <Label FontSize="20" FontWeight="DemiBold">
+        <Border Margin="10, 10" Height="70">
+            <StackPanel Height="70">
+                
+                <Label FontSize="20" FontWeight="DemiBold" HorizontalAlignment="Center">
                     Password
                 </Label>
+
+                <DockPanel Background="MediumPurple" LastChildFill="True">
                 <Button DockPanel.Dock="Right" x:Name="CancelBtn2" Click="CancelBtn2_Click">
                     <materialDesign:PackIcon Kind="CloseCircle" Margin="-6, -6"/>
                 </Button>
-                <TextBox Name="PasswordToEdit" FontSize="20" Width="190" Text="{Binding CurrUser.Password}" BorderThickness="0">
+                <TextBox Name="PasswordToEdit" FontSize="20" BorderThickness="0">
                 </TextBox>
-            </DockPanel>
+                </DockPanel>
+            </StackPanel>
         </Border>
-        
-        
+
+        <Border Margin="10, 10" Height="70">
+            <StackPanel Height="70">
+
+                <Label FontSize="20" FontWeight="DemiBold" HorizontalAlignment="Center">
+                    New Password
+                </Label>
+
+                <DockPanel Background="MediumPurple" LastChildFill="True">
+                    <Button DockPanel.Dock="Right" x:Name="CancelBtn3" Click="CancelBtn3_Click">
+                        <materialDesign:PackIcon Kind="CloseCircle" Margin="-6, -6"/>
+                    </Button>
+                    <TextBox Name="NewPassword" FontSize="20" BorderThickness="0"/>
+                </DockPanel>
+            </StackPanel>
+        </Border>
+
+
         <Button Height="50" 
                 Name="AcceptBtn" 
-                Margin="20, 10" 
+                Margin="20, 20" 
                 Click="AcceptBtn_Click" 
                 materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:0.5"
                 FontSize="20">

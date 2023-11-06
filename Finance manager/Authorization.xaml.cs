@@ -49,9 +49,9 @@ namespace Finance_manager
         {
             if (loginTxtBox.Text != string.Empty && passTxtBox.Text != string.Empty)
             {
-                //try
-                //{
-                User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault();
+                try
+                {
+                    User user = uow.UserRepo.Get(x => x.Login == loginTxtBox.Text).FirstOrDefault();
                 if (BCrypt.Net.BCrypt.Verify(passTxtBox.Text, user.Password))
                 {
                     Hide();
@@ -62,18 +62,18 @@ namespace Finance_manager
                 }
                 else
                 {
-                    MessageBox.Show("123");
+                    MessageBox.Show("incorrect login or password.");
                 }
 
                 loginTxtBox.Text = string.Empty;
                 passTxtBox.Text = string.Empty;
 
                 Hide();
-                //}
-                //catch
-                //{
-                //    MessageBox.Show("incorrect login or password.");
-                //}
+                }
+                catch
+                {
+                    MessageBox.Show("incorrect login or password.");
+                }
             }
             else
             {
