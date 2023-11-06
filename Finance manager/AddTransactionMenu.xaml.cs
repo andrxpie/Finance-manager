@@ -90,7 +90,8 @@ namespace Finance_manager
         private bool CheckValues()
         {
             if (datePicker.SelectedDate.Value > DateTime.Now
-               && CategoriesList.SelectedItem == null)
+               && CategoriesList.SelectedItem == null
+               && Convert.ToInt32(ValueToEnter.Text) > currUser.Balance)
             { return false; } return true; 
         }
 

@@ -32,7 +32,8 @@ namespace Finance_manager
                 new Category { Id = 12, Name = "Sport" },
                 new Category { Id = 13, Name = "Taxi" },
                 new Category { Id = 14, Name = "Transport" },
-                new Category { Id = 15, Name = "Pets" }
+                new Category { Id = 15, Name = "Pets" },
+                new Category { Id = 16, Name = "No category"}
             });
         }
     }

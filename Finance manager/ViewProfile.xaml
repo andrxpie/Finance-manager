@@ -8,7 +8,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:viewmodel="clr-namespace:Finance_manager.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ViewModel}"
       mc:Ignorable="d" 
-      d:DesignHeight="570" d:DesignWidth="340"
+      d:DesignHeight="600" d:DesignWidth="340"
       Title="ViewProfile" Background="White">
     <StackPanel>
         

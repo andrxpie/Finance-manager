@@ -46,32 +46,9 @@ namespace Finance_manager
 
             vm.CurrUser = user;
 
-            List<Transaction> list = uoW.TransactionRepo.Get(x => x.User.Login == vm.CurrUser.Login, includeProperties: "Category").ToList();
+            Refresh();
 
-            Dictionary<string, int> categorysumpair = new Dictionary<string, int>();
-
-            foreach(var i in uoW.CategoryRepo.Get().Where(x => x.Transactions != null).ToList())
-            {
-                categorysumpair.Add(i.Name, list.Where(x => x.Category.Name == i.Name).Sum(x => x.Sum));
-            }
-
-            #region Test
-            if (vm.CurrUser.Transactions != null)
-            {
-                foreach (var i in categorysumpair)
-                {
-                    myPieChart.Series.Add(new PieSeries
-                    {
-                        Title = i.Key + " - " + i.Value,
-                        Fill = vm.colors[new Random().Next(0, vm.colors.Length)],
-                        Values = new ChartValues<ObservableValue> { new ObservableValue(i.Value) },
-                        StrokeThickness = 5
-                    });
-                }
-            }
-            #endregion
-
-            //Image.Source = new BitmapImage(new Uri($"{vm.CurrUser.AvatarPicture}", UriKind.Absolute));
+            Image.Source = new BitmapImage(new Uri($"{vm.CurrUser.AvatarPicture}", UriKind.Absolute));
 
             this.DataContext = vm;
         }
@@ -98,6 +75,50 @@ namespace Finance_manager
             if (categoryWindow.ShowDialog() == true ) 
             {
                 vm.SelectedText = categoryWindow.SelectegCateg;
+
+                var list = uoW.TransactionRepo.Get(x => x.User.Login == vm.CurrUser.Login, includeProperties: "Category").ToList();
+                var python_is_garbage = uoW.CategoryRepo.Get().Where(x => x.Name == vm.SelectedText).ToList();
+                Dictionary<string, int> categorysumpair = new Dictionary<string, int>();
+
+
+                foreach (var i in python_is_garbage)
+                {
+                    categorysumpair.Add(i.Name, list.Where(x => x.Category.Name == i.Name).Sum(x => x.Sum));
+                }
+
+                initialize(categorysumpair);
+                
+            }
+        }
+
+        private void initialize(Dictionary<string, int> valuePairs)
+        {
+            myPieChart.Series.Clear();
+            if (vm.CurrUser.Transactions != null)
+            {
+                List<int> UsedIndexes = new List<int>();
+
+                foreach (var i in valuePairs)
+                {
+                    Random random = new Random();
+                    int a = random.Next(0, vm.colors.Length);
+
+                    if (UsedIndexes.Contains(a))
+                        while (UsedIndexes.Contains(a))
+                            a = random.Next(0, vm.colors.Length);
+                    else
+                    {
+                        myPieChart.Series.Add(new PieSeries
+                        {
+                            Title = i.Key + " - " + i.Value,
+                            Fill = vm.colors[a],
+                            Values = new ChartValues<ObservableValue> { new ObservableValue(i.Value) },
+                            StrokeThickness = 5
+                        });
+
+                        UsedIndexes.Add(a);
+                    }
+                }
             }
         }
 
@@ -116,6 +137,23 @@ namespace Finance_manager
             ViewProfile vp = new ViewProfile(vm.CurrUser);
             Navigator.NavigationService.Navigate(vp);
 
+        }
+
+        private void Refresh()
+        {
+
+            List<Transaction> list = uoW.TransactionRepo.Get(x => x.User.Login == vm.CurrUser.Login, includeProperties: "Category").ToList();
+
+            Dictionary<string, int> categorysumpair = new Dictionary<string, int>();
+
+            var python_is_garbage = uoW.CategoryRepo.Get().Where(x => x.Transactions != null).ToList();
+
+            foreach (var i in python_is_garbage)
+            {
+                categorysumpair.Add(i.Name, list.Where(x => x.Category.Name == i.Name).Sum(x => x.Sum));
+            }
+
+            initialize(categorysumpair);
         }
     }
 }
