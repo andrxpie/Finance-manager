@@ -28,7 +28,7 @@ namespace Finance_manager
         private string login;
         private IUoW uoW = new UnitOfWork();
         public string SelectegCateg { get; set; }
-        private IUoW uoW = new UnitOfWork();
+
 
         public MainWindow()
         {
@@ -39,8 +39,7 @@ namespace Finance_manager
             }
             this.DataContext = vm;
         }
-        
-       
+
         public MainWindow(User user)
         {
             InitializeComponent();

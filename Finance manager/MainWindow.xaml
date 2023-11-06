@@ -16,7 +16,7 @@
                     Content="{Binding CurrUser.Login}"
                     Style="{StaticResource MaterialDesignOutlineChip}"
                     Click="Chip_Click">
-                    
+
                     <materialDesign:Chip.Icon>
                         <Image Name ="Image" Stretch="UniformToFill"/>
                     </materialDesign:Chip.Icon>

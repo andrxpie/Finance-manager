@@ -70,8 +70,15 @@ namespace Finance_manager
         {
             try
             {
-                currUser.Balance += amount;
-                vm.CurrUser = user;
+                if (isCreditingtransaction == true)
+                {
+                    currUser.Balance += amount;
+                    vm.CurrUser = user;
+                }
+                else
+                {
+                    currUser.Balance -= amount;
+                }
             }
             catch
             {
